@@ -35,7 +35,7 @@ public class visitorController {
         //获取上传的file
         Resource resource = new ClassPathResource("");
         FileUploadUtil fileUploadUtil = new FileUploadUtil();
-        String OriginPath = resource.getFile().getAbsolutePath();//D:\work\extra\十一届服务外包\AS_Hotel\target\classes
+        String OriginPath = resource.getFile().getAbsolutePath();//D:\work\extra\十一届服务外包\AS_Hotel\target\classes(编译目标地址)
         String filePath = fileUploadUtil.fileUpload(facefile, OriginPath);
 
         String enginePath = OriginPath + File.separator + "lib" + File.separator + "WIN64";
@@ -52,6 +52,7 @@ public class visitorController {
             visitor.setDocumentType(docType);
             visitor.setDocumentNumber(docNumber);
             int re = visitorService.insertVisitor(visitor);
+
             if (re == 0) {
                 result.put("msg", "true");
             } else
