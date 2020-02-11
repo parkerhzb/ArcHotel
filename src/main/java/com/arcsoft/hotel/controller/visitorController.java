@@ -52,7 +52,6 @@ public class visitorController {
             visitor.setDocumentType(docType);
             visitor.setDocumentNumber(docNumber);
             int re = visitorService.insertVisitor(visitor);
-
             if (re == 0) {
                 result.put("msg", "true");
             } else
