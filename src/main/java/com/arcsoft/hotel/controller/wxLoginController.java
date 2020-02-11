@@ -80,7 +80,6 @@ public class wxLoginController {
                     int days = daysUtil.getDistanceTime(checkin_date, date);
 
                     String iconPath = OriginPath + File.separator + "icon" + File.separator + checkIn.getId() + ".jpg";
-                    enginePath = enginePath.replaceAll("\\\\", "/");
                     json.put("id", checkIn.getId());
                     json.put("name", checkIn.getName());
                     json.put("avatar", iconPath);
