@@ -7,6 +7,7 @@ import com.arcsoft.hotel.service.checkinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,5 +28,27 @@ public class checkinServiceImpl implements checkinService {
         checkInExample.createCriteria().andRoomIdEqualTo(roomId).andIsCheckOutIsNull();
         Date checkin_date = checkInMapper.selectByExample(checkInExample).get(0).getCheckinDate();
         return checkin_date;
+    }
+
+    @Override
+    public ArrayList<byte[]> faceList(int roomId) {
+        checkInExample.createCriteria().andRoomIdEqualTo(roomId).andIsCheckOutIsNull();
+        List<CheckIn> person = checkInMapper.selectByExample(checkInExample);
+        ArrayList<byte[]> faceList = new ArrayList<>();
+        for (CheckIn checkIn : person) {
+            faceList.add(checkIn.getFace());
+        }
+        return faceList;
+    }
+
+    @Override
+    public ArrayList<byte[]> faceList() {
+        checkInExample.createCriteria().andIsCheckOutIsNull();
+        List<CheckIn> person = checkInMapper.selectByExample(checkInExample);
+        ArrayList<byte[]> faceList = new ArrayList<>();
+        for (CheckIn checkIn : person) {
+            faceList.add(checkIn.getFace());
+        }
+        return faceList;
     }
 }

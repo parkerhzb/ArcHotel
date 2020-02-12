@@ -3,7 +3,6 @@ package com.arcsoft.hotel.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.arcsoft.hotel.pojo.Visitor;
 import com.arcsoft.hotel.service.faceService;
-import com.arcsoft.hotel.service.impl.faceServiceImpl;
 import com.arcsoft.hotel.service.visitorService;
 import com.arcsoft.hotel.util.FileUploadUtil;
 import com.arcsoft.hotel.util.faceRecUtil;
@@ -52,7 +51,7 @@ public class visitorController {
             visitor.setDocumentType(docType);
             visitor.setDocumentNumber(docNumber);
             int re = visitorService.insertVisitor(visitor);
-            if (re == 0) {
+            if (re > 0) {
                 result.put("msg", "true");
             } else
                 result.put("msg", "false,数据库插入错误！");

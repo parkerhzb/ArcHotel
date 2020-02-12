@@ -24,4 +24,9 @@ public class roomConsumeServiceImpl implements roomConsumeService {
         List<RoomConsume> roomConsumes = roomConsumeMapper.selectByExample(roomConsumeExample);
         return roomConsumes;
     }
+
+    @Override
+    public void addConsume(RoomConsume roomConsume) {
+        roomConsumeMapper.insertSelective(roomConsume);
+    }
 }
