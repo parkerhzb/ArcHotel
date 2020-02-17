@@ -13,10 +13,10 @@ import java.util.List;
 public class checkouServiceImpl implements checkoutService {
     @Autowired
     CheckOutMapper checkOutMapper;
-    CheckOutExample checkOutExample = new CheckOutExample();
 
     @Override
     public List<CheckOut> getCheckoutByTypeANDNumber(Integer type, String number) {
+        CheckOutExample checkOutExample = new CheckOutExample();
         checkOutExample.createCriteria().andDocumentTypeEqualTo(type).andDocumentNumberEqualTo(number);
         List<CheckOut> checkOuts = checkOutMapper.selectByExample(checkOutExample);
         return checkOuts;

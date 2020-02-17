@@ -14,7 +14,6 @@ import java.util.List;
 public class visitorServiceImpl implements visitorService {
     @Autowired
     VisitorMapper visitorMapper;
-    VisitorExample visitorExample = new VisitorExample();
 
     @Override
     public int insertVisitor(Visitor visitor) {
@@ -24,6 +23,7 @@ public class visitorServiceImpl implements visitorService {
 
     @Override
     public ArrayList<byte[]> getDoorFace(int roomId) {
+        VisitorExample visitorExample = new VisitorExample();
         visitorExample.createCriteria().andRoomIdEqualTo(roomId);
         List<Visitor> visitors = visitorMapper.selectByExample(visitorExample);
         ArrayList<byte[]> face = new ArrayList<>();

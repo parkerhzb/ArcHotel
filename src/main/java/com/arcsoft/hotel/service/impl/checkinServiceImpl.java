@@ -51,4 +51,10 @@ public class checkinServiceImpl implements checkinService {
         }
         return faceList;
     }
+
+    @Override
+    public int addCheckin(CheckIn checkIn) {
+        int re = checkInMapper.insertSelective(checkIn);
+        return re;
+    }
 }

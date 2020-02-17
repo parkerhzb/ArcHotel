@@ -16,10 +16,10 @@ public class roomConsumeServiceImpl implements roomConsumeService {
 
     @Autowired
     RoomConsumeMapper roomConsumeMapper;
-    RoomConsumeExample roomConsumeExample = new RoomConsumeExample();
 
     @Override
     public List<RoomConsume> getConsumeByIdANDCheckinDate(Integer roomId, Date time) {
+        RoomConsumeExample roomConsumeExample = new RoomConsumeExample();
         roomConsumeExample.createCriteria().andIdEqualTo(roomId).andTimeBetween(time, new Date());
         List<RoomConsume> roomConsumes = roomConsumeMapper.selectByExample(roomConsumeExample);
         return roomConsumes;

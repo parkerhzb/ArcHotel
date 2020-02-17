@@ -20,11 +20,9 @@ import java.util.*;
 public class WxLoginServiceImpl implements WxLoginService {
     @Autowired
     CheckInMapper checkInMapper;
-    CheckInExample checkInExample = new CheckInExample();
 
     @Autowired
     private UserMapper userMapper;
-    private UserExample userExample = new UserExample();
 
     private static int no = 0;
 
@@ -40,6 +38,7 @@ public class WxLoginServiceImpl implements WxLoginService {
         File file = new File(path);
         no++;
         //查询check_in未退房的所有访客
+        CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andIsCheckOutIsNull();
         List<CheckIn> checkIns = checkInMapper.selectByExampleWithBLOBs(checkInExample);
         faceRecUtil faceRecUtil = new faceRecUtil(enginePath);
@@ -91,6 +90,7 @@ public class WxLoginServiceImpl implements WxLoginService {
         String sessionKey = (String) jsonObject.get("session_key");
 
         //通过openid查询数据库是否有此用户
+        UserExample userExample = new UserExample();
         userExample.createCriteria().andOpenIdEqualTo(openid);
         if (userMapper.selectByExample(userExample) == null) {//用户不存在
             User user = new User();

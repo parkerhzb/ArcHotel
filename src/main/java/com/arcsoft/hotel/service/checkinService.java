@@ -17,4 +17,7 @@ public interface checkinService {
 
     //获得所有在住的房客人脸
     ArrayList<byte[]> faceList();
+
+    //添加入住记录
+    int addCheckin(CheckIn checkIn);
 }

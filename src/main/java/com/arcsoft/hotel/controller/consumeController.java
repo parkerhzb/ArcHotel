@@ -14,12 +14,15 @@ public class consumeController {
     @Autowired
     roomConsumeService roomConsumeService;
 
+    /*
+    添加消费记录
+     */
     @RequestMapping("/pay")
     public void consume(@RequestParam("deviceId") String deviceId, @RequestParam("roomId") int roomId,
                         @RequestParam("shoppingName") String shoppingName, @RequestParam("pay") double pay) {
         RoomConsume roomConsume = new RoomConsume();
-        roomConsume.setItem(deviceId + "#" + shoppingName);
-        roomConsume.setRoomId(roomId);
+        roomConsume.setItem(deviceId + "#" + shoppingName);//消费条目
+        roomConsume.setRoomId(roomId);//消费房间
         roomConsume.setPrice(pay);
         roomConsume.setTime(new Date());
         roomConsumeService.addConsume(roomConsume);

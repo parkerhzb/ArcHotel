@@ -5,20 +5,15 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.arcsoft.hotel.pojo.*;
 import com.arcsoft.hotel.service.*;
-import com.arcsoft.hotel.service.impl.faceServiceImpl;
 import com.arcsoft.hotel.util.DaysUtil;
 import com.arcsoft.hotel.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -48,7 +43,7 @@ public class wxLoginController {
     checkoutService checkoutService;
 
     @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public JSONObject login(@RequestParam("file") MultipartFile file, Model model) throws ServletException, IOException {
+    public JSONObject login(@RequestBody MultipartFile file) throws ServletException, IOException {
         System.out.println("开始处理微信登录……");
         JSONObject json = new JSONObject();
 
@@ -72,11 +67,13 @@ public class wxLoginController {
                     RoomType roomType = roomTypeService.getRoomTypeById(room.getTypeId());
 //                  sql = "SELECT * FROM room_consume where room_id=? and time<NOW() and ttime>(select checkin_date from check_in where room_id=? and is_check_out=0)";
                     Date checkin_date = checkinService.getCheckinDate(checkIn.getRoomId());
+                    DaysUtil daysUtil = new DaysUtil();
                     Date date = new Date(); // get the current date
+                    date = daysUtil.initialTime(date);
                     List<RoomConsume> roomConsumes = roomConsumeService.getConsumeByIdANDCheckinDate(checkIn.getRoomId(), checkin_date);
                     List<CheckOut> checkOuts = checkoutService.getCheckoutByTypeANDNumber(checkIn.getDocumentType(), checkIn.getDocumentNumber());
 
-                    DaysUtil daysUtil = new DaysUtil();
+
                     int days = daysUtil.getDistanceTime(checkin_date, date);
 
                     String iconPath = OriginPath + File.separator + "icon" + File.separator + checkIn.getId() + ".jpg";

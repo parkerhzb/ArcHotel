@@ -1,11 +1,10 @@
 package com.arcsoft.hotel.util;
 
+import sun.misc.BASE64Decoder;
+
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.FileImageOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class ImageUtil {
 
@@ -86,5 +85,27 @@ public class ImageUtil {
             }
         }
         return "0x" + sb.toString().toUpperCase();
+    }
+
+    /*
+    BASE64图片转码，string file数据转存图片,路径为path
+     */
+    public void savePhoto(String file, String path) throws IOException {
+        /////图片数据接收
+        String StrFace = file.replace(' ', '+');
+        //StrFace= URLDecoder.decode(StrFace,"UTF-8");
+        BASE64Decoder decoder = new BASE64Decoder();
+        byte[] b = decoder.decodeBuffer(StrFace);
+        // Base64解码
+        for (int i = 0; i < b.length; ++i) {
+            if (b[i] < 0) {// 调整异常数据
+                b[i] += 256;
+            }
+        }
+        // 生成jpeg图片
+        OutputStream out = new FileOutputStream(path);////////新生成的图片
+        out.write(b);
+        out.flush();
+        out.close();
     }
 }
