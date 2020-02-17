@@ -36,6 +36,7 @@ public class DaysUtil {
         }
     }
 
+
     //初始化日期中的时间 将时间变为00：00：00   转换时差 UTC
     public Date initialTime(Date date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

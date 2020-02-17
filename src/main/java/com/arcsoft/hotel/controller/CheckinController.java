@@ -28,7 +28,6 @@ import java.util.List;
 
 @RestController
 public class CheckinController {
-
     @Autowired
     roomService roomService;
     @Autowired

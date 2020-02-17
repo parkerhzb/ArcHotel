@@ -6,6 +6,5 @@ import java.util.ArrayList;
 
 public interface visitorService {
     int insertVisitor(Visitor visitor);
-
     ArrayList<byte[]> getDoorFace(int roomId);
 }

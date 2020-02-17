@@ -16,6 +16,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
         ;
     }
 
+
     public WebSocketHandler myHandler() {
         return new MyHandler();
     }

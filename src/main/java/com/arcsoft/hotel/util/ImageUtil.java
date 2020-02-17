@@ -86,7 +86,6 @@ public class ImageUtil {
         }
         return "0x" + sb.toString().toUpperCase();
     }
-
     /*
     BASE64图片转码，string file数据转存图片,路径为path
      */

@@ -14,7 +14,6 @@ public interface roomService {
     Map<String, Integer> ConflictTypeFromCheckin(Date start, Date end);//返回房型与数量
 
     ArrayList<Integer> ConflictRoomFromCheckin(Date start, Date end);//返回房间id
-
     //返回当前没入住的房型与数量
     Map<String, Integer> EmptyTypeNum();
 

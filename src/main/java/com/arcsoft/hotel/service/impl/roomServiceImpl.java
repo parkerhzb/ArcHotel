@@ -91,6 +91,7 @@ public class roomServiceImpl implements roomService {
         return list;
     }
 
+
     @Override
     public List<Room> getAll() {
         RoomExample roomExample = new RoomExample();

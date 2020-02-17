@@ -13,7 +13,6 @@ import java.util.Date;
 public class consumeController {
     @Autowired
     roomConsumeService roomConsumeService;
-
     /*
     添加消费记录
      */

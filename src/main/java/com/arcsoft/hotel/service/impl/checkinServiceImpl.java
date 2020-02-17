@@ -41,6 +41,7 @@ public class checkinServiceImpl implements checkinService {
         return faceList;
     }
 
+
     @Override
     public ArrayList<byte[]> faceList() {
         checkInExample.createCriteria().andIsCheckOutIsNull();

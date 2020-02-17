@@ -73,7 +73,6 @@ public class wxLoginController {
                     List<RoomConsume> roomConsumes = roomConsumeService.getConsumeByIdANDCheckinDate(checkIn.getRoomId(), checkin_date);
                     List<CheckOut> checkOuts = checkoutService.getCheckoutByTypeANDNumber(checkIn.getDocumentType(), checkIn.getDocumentNumber());
 
-
                     int days = daysUtil.getDistanceTime(checkin_date, date);
 
                     String iconPath = OriginPath + File.separator + "icon" + File.separator + checkIn.getId() + ".jpg";

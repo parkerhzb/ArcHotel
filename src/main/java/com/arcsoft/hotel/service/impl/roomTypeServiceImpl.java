@@ -20,6 +20,7 @@ public class roomTypeServiceImpl implements roomTypeService {
         return roomType;
     }
 
+
     @Override
     public List<RoomType> getAll() {
         RoomTypeExample roomTypeExample = new RoomTypeExample();

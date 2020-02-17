@@ -17,6 +17,7 @@ public class roomConsumeServiceImpl implements roomConsumeService {
     @Autowired
     RoomConsumeMapper roomConsumeMapper;
 
+
     @Override
     public List<RoomConsume> getConsumeByIdANDCheckinDate(Integer roomId, Date time) {
         RoomConsumeExample roomConsumeExample = new RoomConsumeExample();

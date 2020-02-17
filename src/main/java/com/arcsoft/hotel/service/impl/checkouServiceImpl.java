@@ -14,6 +14,7 @@ public class checkouServiceImpl implements checkoutService {
     @Autowired
     CheckOutMapper checkOutMapper;
 
+
     @Override
     public List<CheckOut> getCheckoutByTypeANDNumber(Integer type, String number) {
         CheckOutExample checkOutExample = new CheckOutExample();

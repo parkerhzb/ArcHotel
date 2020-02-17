@@ -7,7 +7,6 @@ import java.text.ParseException;
 
 public interface WxLoginService {
     CheckIn wxLogin(String path, String enginePath);
-
     JSONObject getUserWXLoginInfo(String wxCode);
 
     String login(String wxCode) throws ParseException;

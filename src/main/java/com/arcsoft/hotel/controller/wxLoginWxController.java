@@ -12,7 +12,6 @@ public class wxLoginWxController {
 
     @Autowired
     WxLoginService wxLoginService;
-
     @RequestMapping("/wxlogin")
     public JSONObject wxLoginWx(@RequestParam("wxCode") String wxCode) {
         JSONObject json = new JSONObject();

@@ -8,7 +8,6 @@ public interface roomTypeService {
     RoomType getRoomTypeById(Integer id);
 
     List<RoomType> getAll();
-
     //根据类型名获得价格
     double getPriceByName(String typeName);
 }

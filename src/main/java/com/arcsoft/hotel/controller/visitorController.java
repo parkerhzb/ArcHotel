@@ -30,7 +30,6 @@ public class visitorController {
                                  @RequestParam("power") String power, @RequestParam("documentType") Integer docType,
                                  @RequestParam("documentNumber") String docNumber) throws IOException {
         JSONObject result = new JSONObject();
-
         //获取上传的file
         Resource resource = new ClassPathResource("");
         FileUploadUtil fileUploadUtil = new FileUploadUtil();

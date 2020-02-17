@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface checkinService {
     List<CheckIn> getAll();
-
     //获得roomId住户入住时间
     Date getCheckinDate(Integer roomId);
 

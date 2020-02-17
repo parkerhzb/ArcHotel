@@ -27,7 +27,6 @@ public class showRoomController {
     userReserveService userReserveService;
     @Autowired
     roomTypeService roomTypeService;
-
     @RequestMapping("/showroom")
     public JSONArray showRoom(@RequestParam("checkinDate") String start, @RequestParam("checkoutDate") String end) {
         DaysUtil daysUtil = new DaysUtil();

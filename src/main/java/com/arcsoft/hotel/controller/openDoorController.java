@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/open")
 public class openDoorController {
+
     @Autowired
     checkinService checkinService;
     @Autowired

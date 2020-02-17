@@ -10,7 +10,6 @@ import java.util.Map;
 public interface userReserveService {
     //插入预定信息
     JSONObject reserveRoom(String name, String phone, String roomType, int num, String checkIn, String checkOut, byte[] face);
-
     //查询与start(now)，end时间冲突的预定记录
     Map<String, Integer> ConflictItem(Date end);
 
