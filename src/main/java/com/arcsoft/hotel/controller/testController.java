@@ -49,7 +49,6 @@ public class TestController {
         System.out.println(num);
         return String.valueOf(num);
     }
-
     @RequestMapping("/test2")
     public ArrayList<Date> t() throws ParseException {
         UserReserveExample userReserveExample = new UserReserveExample();

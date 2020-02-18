@@ -132,4 +132,25 @@ public class reserveController {
     /*
     前台  根据手机号查询预约信息
      */
+    @RequestMapping("/getreserve2")
+    public JSONArray getReserveByPhone(@RequestBody String phone) throws ParseException {
+        JSONArray result = new JSONArray();
+        //获取时间
+        DaysUtil daysUtil = new DaysUtil();
+        Date date = daysUtil.initialTime(new Date());
+        //在当前时间可入住的所有预约信息
+        List<UserReserve> reserves = userReserveService.getReserve(date);
+        for (UserReserve userReserve : reserves) {
+            if (userReserve.getPhoneNumber().equals(phone)) {
+                JSONObject json = new JSONObject();
+                json.put("id", userReserve.getId());
+                json.put("checkinDate", userReserve.getCheckinDate());
+                json.put("checkoutDate", userReserve.getCheckoutDate());
+                json.put("roomType", userReserve.getRoomType());
+                json.put("num", userReserve.getNum());
+                result.add(json);
+            }
+        }
+        return result;
+    }
 }
