@@ -30,15 +30,15 @@ public class showRoomController {
     @RequestMapping("/showroom")
     public JSONArray showRoom(@RequestParam("checkinDate") String start, @RequestParam("checkoutDate") String end) {
         DaysUtil daysUtil = new DaysUtil();
-        Date checkinDate = daysUtil.StringtoDate(start);
-        Date checkoutDate = daysUtil.StringtoDate(end);
+        Date checkinDate = daysUtil.StringtoDate(start, "yyyy-MM-dd");
+        Date checkoutDate = daysUtil.StringtoDate(end, "yyyy-MM-dd");
         JSONArray result = new JSONArray();
 //        //当前入住的冲突房间
 //        Map<String ,Integer>types1 =roomService.ConflictTypeFromCheckin(checkinDate,checkoutDate);
         //返回当前未入住的房型与数量
         Map<String, Integer> types1 = roomService.EmptyTypeNum();
         //与预约冲突的房间类型
-        Map<String, Integer> types2 = userReserveService.ConflictItem(checkoutDate);
+        Map<String, Integer> types2 = userReserveService.ConflictItem(new Date(), checkoutDate);
         List<RoomType> roomTypes = roomTypeService.getAll();
         for (RoomType roomType : roomTypes) {
             JSONObject json = new JSONObject();
@@ -49,7 +49,7 @@ public class showRoomController {
             json.put("typeId", roomType.getId());
             json.put("type", type);
             json.put("num", num1 - num2);
-            json.put("price", roomTypeService.getPriceByName(type));
+            json.put("price", roomTypeService.getRoomTypeById(roomType.getId()).getPrice());
             result.add(json);
         }
         return result;

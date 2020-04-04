@@ -41,7 +41,7 @@ public class roomServiceImpl implements roomService {
         //checkin中退房时间大于start的入住记录
         CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andCheckoutDateGreaterThan(start);
-        List<CheckIn> checkIns = checkInMapper.selectByExampleWithBLOBs(checkInExample);
+        List<CheckIn> checkIns = checkInMapper.selectByExample(checkInExample);
         for (CheckIn checkIn : checkIns) {
             roomIds.add(checkIn.getRoomId());
         }
@@ -71,7 +71,7 @@ public class roomServiceImpl implements roomService {
         //checkin中退房时间大于start的入住记录
         CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andCheckoutDateGreaterThan(start);
-        List<CheckIn> checkIns = checkInMapper.selectByExampleWithBLOBs(checkInExample);
+        List<CheckIn> checkIns = checkInMapper.selectByExample(checkInExample);
         for (CheckIn checkIn : checkIns) {
             roomIds.add(checkIn.getRoomId());
         }
@@ -113,5 +113,21 @@ public class roomServiceImpl implements roomService {
         roomExample.createCriteria().andTypeIdEqualTo(typeId);
         int num = roomMapper.countByExample(roomExample);
         return num;
+    }
+
+    @Override
+    public String getRoomNum(int id) {
+        Room room = roomMapper.selectByPrimaryKey(id);
+        if (room == null)
+            return null;
+        return room.getRoomNumber();
+    }
+
+    @Override
+    public Room getRoomByNumber(String room_number) {
+        RoomExample roomExample = new RoomExample();
+        roomExample.createCriteria().andRoomNumberEqualTo(room_number);
+        Room room = roomMapper.selectByExample(roomExample).get(0);
+        return room;
     }
 }

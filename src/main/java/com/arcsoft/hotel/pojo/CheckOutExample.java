@@ -192,63 +192,63 @@ public class CheckOutExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIsNull() {
-            addCriterion("room_id is null");
+        public Criteria andCheckinIdIsNull() {
+            addCriterion("checkin_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIsNotNull() {
-            addCriterion("room_id is not null");
+        public Criteria andCheckinIdIsNotNull() {
+            addCriterion("checkin_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdEqualTo(Integer value) {
-            addCriterion("room_id =", value, "roomId");
+        public Criteria andCheckinIdEqualTo(Integer value) {
+            addCriterion("checkin_id =", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotEqualTo(Integer value) {
-            addCriterion("room_id <>", value, "roomId");
+        public Criteria andCheckinIdNotEqualTo(Integer value) {
+            addCriterion("checkin_id <>", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdGreaterThan(Integer value) {
-            addCriterion("room_id >", value, "roomId");
+        public Criteria andCheckinIdGreaterThan(Integer value) {
+            addCriterion("checkin_id >", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("room_id >=", value, "roomId");
+        public Criteria andCheckinIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("checkin_id >=", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdLessThan(Integer value) {
-            addCriterion("room_id <", value, "roomId");
+        public Criteria andCheckinIdLessThan(Integer value) {
+            addCriterion("checkin_id <", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdLessThanOrEqualTo(Integer value) {
-            addCriterion("room_id <=", value, "roomId");
+        public Criteria andCheckinIdLessThanOrEqualTo(Integer value) {
+            addCriterion("checkin_id <=", value, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIn(List<Integer> values) {
-            addCriterion("room_id in", values, "roomId");
+        public Criteria andCheckinIdIn(List<Integer> values) {
+            addCriterion("checkin_id in", values, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotIn(List<Integer> values) {
-            addCriterion("room_id not in", values, "roomId");
+        public Criteria andCheckinIdNotIn(List<Integer> values) {
+            addCriterion("checkin_id not in", values, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdBetween(Integer value1, Integer value2) {
-            addCriterion("room_id between", value1, value2, "roomId");
+        public Criteria andCheckinIdBetween(Integer value1, Integer value2) {
+            addCriterion("checkin_id between", value1, value2, "checkinId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("room_id not between", value1, value2, "roomId");
+        public Criteria andCheckinIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("checkin_id not between", value1, value2, "checkinId");
             return (Criteria) this;
         }
 
@@ -309,66 +309,6 @@ public class CheckOutExample {
 
         public Criteria andPriceNotBetween(Double value1, Double value2) {
             addCriterion("price not between", value1, value2, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateIsNull() {
-            addCriterion("checkin_date is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateIsNotNull() {
-            addCriterion("checkin_date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateEqualTo(Date value) {
-            addCriterionForJDBCDate("checkin_date =", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("checkin_date <>", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("checkin_date >", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("checkin_date >=", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateLessThan(Date value) {
-            addCriterionForJDBCDate("checkin_date <", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("checkin_date <=", value, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateIn(List<Date> values) {
-            addCriterionForJDBCDate("checkin_date in", values, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("checkin_date not in", values, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("checkin_date between", value1, value2, "checkinDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("checkin_date not between", value1, value2, "checkinDate");
             return (Criteria) this;
         }
 
@@ -442,313 +382,63 @@ public class CheckOutExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(Date value) {
+        public Criteria andTimeEqualTo(String value) {
             addCriterion("time =", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(Date value) {
+        public Criteria andTimeNotEqualTo(String value) {
             addCriterion("time <>", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(Date value) {
+        public Criteria andTimeGreaterThan(String value) {
             addCriterion("time >", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andTimeGreaterThanOrEqualTo(String value) {
             addCriterion("time >=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(Date value) {
+        public Criteria andTimeLessThan(String value) {
             addCriterion("time <", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(Date value) {
+        public Criteria andTimeLessThanOrEqualTo(String value) {
             addCriterion("time <=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<Date> values) {
+        public Criteria andTimeLike(String value) {
+            addCriterion("time like", value, "time");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeNotLike(String value) {
+            addCriterion("time not like", value, "time");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIn(List<String> values) {
             addCriterion("time in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<Date> values) {
+        public Criteria andTimeNotIn(List<String> values) {
             addCriterion("time not in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(Date value1, Date value2) {
+        public Criteria andTimeBetween(String value1, String value2) {
             addCriterion("time between", value1, value2, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(Date value1, Date value2) {
+        public Criteria andTimeNotBetween(String value1, String value2) {
             addCriterion("time not between", value1, value2, "time");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeIsNull() {
-            addCriterion("document_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeIsNotNull() {
-            addCriterion("document_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeEqualTo(Integer value) {
-            addCriterion("document_type =", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeNotEqualTo(Integer value) {
-            addCriterion("document_type <>", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeGreaterThan(Integer value) {
-            addCriterion("document_type >", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("document_type >=", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeLessThan(Integer value) {
-            addCriterion("document_type <", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("document_type <=", value, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeIn(List<Integer> values) {
-            addCriterion("document_type in", values, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeNotIn(List<Integer> values) {
-            addCriterion("document_type not in", values, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeBetween(Integer value1, Integer value2) {
-            addCriterion("document_type between", value1, value2, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("document_type not between", value1, value2, "documentType");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberIsNull() {
-            addCriterion("document_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberIsNotNull() {
-            addCriterion("document_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberEqualTo(String value) {
-            addCriterion("document_number =", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberNotEqualTo(String value) {
-            addCriterion("document_number <>", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberGreaterThan(String value) {
-            addCriterion("document_number >", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberGreaterThanOrEqualTo(String value) {
-            addCriterion("document_number >=", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberLessThan(String value) {
-            addCriterion("document_number <", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberLessThanOrEqualTo(String value) {
-            addCriterion("document_number <=", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberLike(String value) {
-            addCriterion("document_number like", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberNotLike(String value) {
-            addCriterion("document_number not like", value, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberIn(List<String> values) {
-            addCriterion("document_number in", values, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberNotIn(List<String> values) {
-            addCriterion("document_number not in", values, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberBetween(String value1, String value2) {
-            addCriterion("document_number between", value1, value2, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDocumentNumberNotBetween(String value1, String value2) {
-            addCriterion("document_number not between", value1, value2, "documentNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdIsNull() {
-            addCriterion("checkin_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdIsNotNull() {
-            addCriterion("checkin_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdEqualTo(Integer value) {
-            addCriterion("checkin_id =", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdNotEqualTo(Integer value) {
-            addCriterion("checkin_id <>", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdGreaterThan(Integer value) {
-            addCriterion("checkin_id >", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("checkin_id >=", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdLessThan(Integer value) {
-            addCriterion("checkin_id <", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdLessThanOrEqualTo(Integer value) {
-            addCriterion("checkin_id <=", value, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdIn(List<Integer> values) {
-            addCriterion("checkin_id in", values, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdNotIn(List<Integer> values) {
-            addCriterion("checkin_id not in", values, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdBetween(Integer value1, Integer value2) {
-            addCriterion("checkin_id between", value1, value2, "checkinId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCheckinIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("checkin_id not between", value1, value2, "checkinId");
             return (Criteria) this;
         }
     }

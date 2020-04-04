@@ -304,63 +304,63 @@ public class VisitorExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIsNull() {
-            addCriterion("room_id is null");
+        public Criteria andInvitationIdIsNull() {
+            addCriterion("invitation_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIsNotNull() {
-            addCriterion("room_id is not null");
+        public Criteria andInvitationIdIsNotNull() {
+            addCriterion("invitation_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdEqualTo(Integer value) {
-            addCriterion("room_id =", value, "roomId");
+        public Criteria andInvitationIdEqualTo(Integer value) {
+            addCriterion("invitation_id =", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotEqualTo(Integer value) {
-            addCriterion("room_id <>", value, "roomId");
+        public Criteria andInvitationIdNotEqualTo(Integer value) {
+            addCriterion("invitation_id <>", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdGreaterThan(Integer value) {
-            addCriterion("room_id >", value, "roomId");
+        public Criteria andInvitationIdGreaterThan(Integer value) {
+            addCriterion("invitation_id >", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("room_id >=", value, "roomId");
+        public Criteria andInvitationIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("invitation_id >=", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdLessThan(Integer value) {
-            addCriterion("room_id <", value, "roomId");
+        public Criteria andInvitationIdLessThan(Integer value) {
+            addCriterion("invitation_id <", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdLessThanOrEqualTo(Integer value) {
-            addCriterion("room_id <=", value, "roomId");
+        public Criteria andInvitationIdLessThanOrEqualTo(Integer value) {
+            addCriterion("invitation_id <=", value, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdIn(List<Integer> values) {
-            addCriterion("room_id in", values, "roomId");
+        public Criteria andInvitationIdIn(List<Integer> values) {
+            addCriterion("invitation_id in", values, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotIn(List<Integer> values) {
-            addCriterion("room_id not in", values, "roomId");
+        public Criteria andInvitationIdNotIn(List<Integer> values) {
+            addCriterion("invitation_id not in", values, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdBetween(Integer value1, Integer value2) {
-            addCriterion("room_id between", value1, value2, "roomId");
+        public Criteria andInvitationIdBetween(Integer value1, Integer value2) {
+            addCriterion("invitation_id between", value1, value2, "invitationId");
             return (Criteria) this;
         }
 
-        public Criteria andRoomIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("room_id not between", value1, value2, "roomId");
+        public Criteria andInvitationIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("invitation_id not between", value1, value2, "invitationId");
             return (Criteria) this;
         }
 
@@ -561,6 +561,76 @@ public class VisitorExample {
 
         public Criteria andDocumentNumberNotBetween(String value1, String value2) {
             addCriterion("document_number not between", value1, value2, "documentNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlIsNull() {
+            addCriterion("faceurl is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlIsNotNull() {
+            addCriterion("faceurl is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlEqualTo(String value) {
+            addCriterion("faceurl =", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlNotEqualTo(String value) {
+            addCriterion("faceurl <>", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlGreaterThan(String value) {
+            addCriterion("faceurl >", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlGreaterThanOrEqualTo(String value) {
+            addCriterion("faceurl >=", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlLessThan(String value) {
+            addCriterion("faceurl <", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlLessThanOrEqualTo(String value) {
+            addCriterion("faceurl <=", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlLike(String value) {
+            addCriterion("faceurl like", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlNotLike(String value) {
+            addCriterion("faceurl not like", value, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlIn(List<String> values) {
+            addCriterion("faceurl in", values, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlNotIn(List<String> values) {
+            addCriterion("faceurl not in", values, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlBetween(String value1, String value2) {
+            addCriterion("faceurl between", value1, value2, "faceurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaceurlNotBetween(String value1, String value2) {
+            addCriterion("faceurl not between", value1, value2, "faceurl");
             return (Criteria) this;
         }
     }

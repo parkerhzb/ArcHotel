@@ -165,63 +165,73 @@ public class ParkExample {
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIsNull() {
-            addCriterion("car_id is null");
+        public Criteria andCarNumberIsNull() {
+            addCriterion("car_number is null");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIsNotNull() {
-            addCriterion("car_id is not null");
+        public Criteria andCarNumberIsNotNull() {
+            addCriterion("car_number is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdEqualTo(Integer value) {
-            addCriterion("car_id =", value, "carId");
+        public Criteria andCarNumberEqualTo(String value) {
+            addCriterion("car_number =", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotEqualTo(Integer value) {
-            addCriterion("car_id <>", value, "carId");
+        public Criteria andCarNumberNotEqualTo(String value) {
+            addCriterion("car_number <>", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdGreaterThan(Integer value) {
-            addCriterion("car_id >", value, "carId");
+        public Criteria andCarNumberGreaterThan(String value) {
+            addCriterion("car_number >", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("car_id >=", value, "carId");
+        public Criteria andCarNumberGreaterThanOrEqualTo(String value) {
+            addCriterion("car_number >=", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdLessThan(Integer value) {
-            addCriterion("car_id <", value, "carId");
+        public Criteria andCarNumberLessThan(String value) {
+            addCriterion("car_number <", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdLessThanOrEqualTo(Integer value) {
-            addCriterion("car_id <=", value, "carId");
+        public Criteria andCarNumberLessThanOrEqualTo(String value) {
+            addCriterion("car_number <=", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIn(List<Integer> values) {
-            addCriterion("car_id in", values, "carId");
+        public Criteria andCarNumberLike(String value) {
+            addCriterion("car_number like", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotIn(List<Integer> values) {
-            addCriterion("car_id not in", values, "carId");
+        public Criteria andCarNumberNotLike(String value) {
+            addCriterion("car_number not like", value, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdBetween(Integer value1, Integer value2) {
-            addCriterion("car_id between", value1, value2, "carId");
+        public Criteria andCarNumberIn(List<String> values) {
+            addCriterion("car_number in", values, "carNumber");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("car_id not between", value1, value2, "carId");
+        public Criteria andCarNumberNotIn(List<String> values) {
+            addCriterion("car_number not in", values, "carNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarNumberBetween(String value1, String value2) {
+            addCriterion("car_number between", value1, value2, "carNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarNumberNotBetween(String value1, String value2) {
+            addCriterion("car_number not between", value1, value2, "carNumber");
             return (Criteria) this;
         }
 

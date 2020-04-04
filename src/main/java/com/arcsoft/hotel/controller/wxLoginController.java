@@ -42,82 +42,95 @@ public class wxLoginController {
     @Autowired
     checkoutService checkoutService;
 
-    @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public JSONObject login(@RequestBody MultipartFile file) throws ServletException, IOException {
+    @RequestMapping(value = "/wfaceLogin", produces = "application/json;charset=UTF-8")
+    public JSONObject faceLogin(@RequestPart("imgData") MultipartFile file, @RequestParam("sess_id") String sess_id) throws ServletException, IOException {
         System.out.println("开始处理微信登录……");
-        JSONObject json = new JSONObject();
 
         Resource resource = new ClassPathResource("");
         FileUploadUtil fileUploadUtil = new FileUploadUtil();
         String OriginPath = resource.getFile().getAbsolutePath();//D:\work\extra\十一届服务外包\AS_Hotel\target\classes
-        //System.out.println(OriginPath);
-        String filePath = fileUploadUtil.fileUpload(file, OriginPath);
+        String filePath = fileUploadUtil.fileUpload(file, OriginPath, "user", sess_id);
 
-        //String enginePath=OriginPath+File.separator+"lib"+File.separator+"LINUX64";
-        String enginePath = OriginPath + File.separator + "lib" + File.separator + "WIN64";
+        String enginePath = OriginPath + File.separator + "lib" + File.separator + "LINUX64";
+        //String enginePath = OriginPath + File.separator + "lib" + File.separator + "WIN64";
         enginePath = enginePath.replaceAll("\\\\", "/");
-        //System.out.println(enginePath);
         JSONObject result = new JSONObject();
         if (faceService.hasFace(filePath, enginePath)) {
-            CheckIn checkIn = wxLoginService.wxLogin(filePath, enginePath);
-            //System.out.println(checkIn.toString());
-            if (checkIn != null) {
+            Inperson inperson = wxLoginService.wxLogin(filePath, enginePath, sess_id);
+            if (inperson != null) {  //住客
                 try {
+                    JSONObject userInfo_js = new JSONObject();
+                    JSONObject user_js = new JSONObject();
+                    JSONObject room_js = new JSONObject();
+
+                    //房客信息
+                    CheckIn checkIn = checkinService.getById(inperson.getCheckinId());
                     Room room = roomService.getRoombyId(checkIn.getRoomId());
                     RoomType roomType = roomTypeService.getRoomTypeById(room.getTypeId());
-//                  sql = "SELECT * FROM room_consume where room_id=? and time<NOW() and ttime>(select checkin_date from check_in where room_id=? and is_check_out=0)";
                     Date checkin_date = checkinService.getCheckinDate(checkIn.getRoomId());
                     DaysUtil daysUtil = new DaysUtil();
-                    Date date = new Date(); // get the current date
+                    Date date = new Date(); // get current date
                     date = daysUtil.initialTime(date);
                     List<RoomConsume> roomConsumes = roomConsumeService.getConsumeByIdANDCheckinDate(checkIn.getRoomId(), checkin_date);
-                    List<CheckOut> checkOuts = checkoutService.getCheckoutByTypeANDNumber(checkIn.getDocumentType(), checkIn.getDocumentNumber());
+                    //List<CheckOut> checkOuts = checkoutService.getCheckoutByTypeANDNumber(inperson.getDocumentType(), inperson.getDocumentNumber());
 
                     int days = daysUtil.getDistanceTime(checkin_date, date);
 
-                    String iconPath = OriginPath + File.separator + "icon" + File.separator + checkIn.getId() + ".jpg";
-                    json.put("id", checkIn.getId());
-                    json.put("name", checkIn.getName());
-                    json.put("avatar", iconPath);
-                    json.put("phone", checkIn.getPhoneNumber());
-                    json.put("status", 1);
-                    JSONArray totalBillArray = new JSONArray();
-                    JSONObject billJson = new JSONObject();
-                    billJson.put("roomNum", room.getRoomNumber());
-                    double amount = days * roomType.getPrice();
-                    for (RoomConsume roomConsume : roomConsumes) {
-                        amount += roomConsume.getPrice();
+                    userInfo_js.put("name", inperson.getName());
+                    userInfo_js.put("phone", inperson.getPhoneNumber());
+
+                    user_js.put("name", inperson.getName());
+                    user_js.put("phone", inperson.getPhoneNumber());
+                    user_js.put("status", "true");
+
+                    JSONObject totalBill = new JSONObject();
+                    //double amount = days * roomType.getPrice();
+                    double totalbill = 0;
+                    if (roomConsumes != null && roomConsumes.size() != 0) {
+                        for (RoomConsume roomConsume : roomConsumes) {
+                            totalbill += roomConsume.getPrice();
+                        }
                     }
-                    billJson.put("amount", amount);
-                    totalBillArray.add(billJson);
-                    json.put("totalBill", totalBillArray);
-                    JSONArray historyOrderArray = new JSONArray();
-                    for (CheckOut checkOut : checkOuts) {
-                        JSONObject historyOrder = new JSONObject();
-                        historyOrder.put("year", checkOut.getCheckinDate().toString().substring(0, 4));
-                        historyOrder.put("checkIn", checkOut.getCheckinDate().toString().substring(5, 10));
-                        historyOrder.put("checkOut", checkOut.getCheckoutDate().toString().substring(5, 10));
-                        historyOrder.put("roomNum", roomService.getRoombyId(checkIn.getRoomId()).getRoomNumber());
-                        historyOrder.put("amount", checkOut.getPrice());
-                        historyOrderArray.add(historyOrder);
+                    totalBill.put("num", totalbill);
+
+                    JSONObject items = new JSONObject();
+                    items.put("roomNum", room.getRoomNumber());
+                    items.put("amount", totalbill);
+                    totalBill.put("items", items);
+                    user_js.put("totalBill", totalBill);
+
+                    JSONObject historyOrder = wxLoginService.historyOrder(sess_id);
+                    user_js.put("history", historyOrder);
+                    result.put("user", user_js);
+
+                    //房间信息
+                    room_js.put("num", room.getRoomNumber());
+                    room_js.put("amount", totalbill);
+                    String url = "https://drcxs.cn/images/type_ID_.jpg";
+                    url.replaceAll("_ID_", room.getTypeId().toString());
+                    room_js.put("img", url);
+
+                    JSONArray billArr = new JSONArray();
+                    if (roomConsumes != null && roomConsumes.size() != 0) {
+                        for (RoomConsume roomConsume : roomConsumes) {
+                            JSONObject item = new JSONObject(true);
+                            item.put("itemName", roomConsume.getItem());
+                            item.put("itemTime", daysUtil.Date2String3(roomConsume.getTime()));
+                            item.put("itemAccount", roomConsume.getPrice());
+                            billArr.add(item);
+                        }
                     }
-                    json.put("history", historyOrderArray);
-                    result.put("user", json);
+                    room_js.put("bill", billArr);
+                    result.put("room", room_js);
+
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     result.put("error", "读取住户信息出错！");
                 }
-//            }
-//            else if (flag == 0) {
-//                int id = Integer.parseInt(checkIn.get("id").toString());
-//                json.put("id", id);
-//                json.put("status", 0);
-//                result.put("user", json);
-//            }
-//            else if (flag == -1) {
-//                result.put("error", "SQL错误！");
-            } else {
-                result.put("error", "数据库连接失败或其他错误！");
+            } else {    //访客
+                result.put("error", "当前用户非房客！");
             }
         } else {
             result.put("error", "未检测到人脸信息！");

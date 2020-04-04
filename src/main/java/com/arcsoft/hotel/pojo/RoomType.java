@@ -7,6 +7,8 @@ public class RoomType {
 
     private String name;
 
+    private Integer num;
+
     public Integer getId() {
         return id;
     }
@@ -31,6 +33,14 @@ public class RoomType {
         this.name = name;
     }
 
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -40,6 +50,7 @@ public class RoomType {
         sb.append(", id=").append(id);
         sb.append(", price=").append(price);
         sb.append(", name=").append(name);
+        sb.append(", num=").append(num);
         sb.append("]");
         return sb.toString();
     }

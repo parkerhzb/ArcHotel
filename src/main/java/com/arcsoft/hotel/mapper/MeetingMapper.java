@@ -2,9 +2,7 @@ package com.arcsoft.hotel.mapper;
 
 import com.arcsoft.hotel.pojo.Meeting;
 import com.arcsoft.hotel.pojo.MeetingExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
@@ -13,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -32,14 +31,16 @@ public interface MeetingMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into meeting (id, meeting_number, ",
-            "type_id, state)",
-            "values (#{id,jdbcType=INTEGER}, #{meetingNumber,jdbcType=VARCHAR}, ",
-            "#{typeId,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR})"
+            "insert into meeting (meeting_number, type_id, ",
+            "state)",
+            "values (#{meetingNumber,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, ",
+            "#{state,jdbcType=VARCHAR})"
     })
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(Meeting record);
 
     @InsertProvider(type = MeetingSqlProvider.class, method = "insertSelective")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insertSelective(Meeting record);
 
     @SelectProvider(type = MeetingSqlProvider.class, method = "selectByExample")

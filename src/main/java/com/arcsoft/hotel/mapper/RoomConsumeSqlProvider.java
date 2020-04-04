@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.RoomConsume;
 import com.arcsoft.hotel.pojo.RoomConsumeExample.Criteria;
 import com.arcsoft.hotel.pojo.RoomConsumeExample.Criterion;
 import com.arcsoft.hotel.pojo.RoomConsumeExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class RoomConsumeSqlProvider {
     public String insertSelective(RoomConsume record) {
         BEGIN();
         INSERT_INTO("room_consume");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getRoomId() != null) {
             VALUES("room_id", "#{roomId,jdbcType=INTEGER}");

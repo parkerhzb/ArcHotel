@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Park;
 import com.arcsoft.hotel.pojo.ParkExample.Criteria;
 import com.arcsoft.hotel.pojo.ParkExample.Criterion;
 import com.arcsoft.hotel.pojo.ParkExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,12 +41,8 @@ public class ParkSqlProvider {
         BEGIN();
         INSERT_INTO("park");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
-        if (record.getCarId() != null) {
-            VALUES("car_id", "#{carId,jdbcType=INTEGER}");
+        if (record.getCarNumber() != null) {
+            VALUES("car_number", "#{carNumber,jdbcType=VARCHAR}");
         }
 
         if (record.getParkTime() != null) {
@@ -68,7 +63,7 @@ public class ParkSqlProvider {
         } else {
             SELECT("id");
         }
-        SELECT("car_id");
+        SELECT("car_number");
         SELECT("park_time");
         SELECT("leave_time");
         FROM("park");
@@ -92,8 +87,8 @@ public class ParkSqlProvider {
             SET("id = #{record.id,jdbcType=INTEGER}");
         }
 
-        if (record.getCarId() != null) {
-            SET("car_id = #{record.carId,jdbcType=INTEGER}");
+        if (record.getCarNumber() != null) {
+            SET("car_number = #{record.carNumber,jdbcType=VARCHAR}");
         }
 
         if (record.getParkTime() != null) {
@@ -113,7 +108,7 @@ public class ParkSqlProvider {
         UPDATE("park");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
-        SET("car_id = #{record.carId,jdbcType=INTEGER}");
+        SET("car_number = #{record.carNumber,jdbcType=VARCHAR}");
         SET("park_time = #{record.parkTime,jdbcType=TIMESTAMP}");
         SET("leave_time = #{record.leaveTime,jdbcType=TIMESTAMP}");
 
@@ -126,8 +121,8 @@ public class ParkSqlProvider {
         BEGIN();
         UPDATE("park");
 
-        if (record.getCarId() != null) {
-            SET("car_id = #{carId,jdbcType=INTEGER}");
+        if (record.getCarNumber() != null) {
+            SET("car_number = #{carNumber,jdbcType=VARCHAR}");
         }
 
         if (record.getParkTime() != null) {

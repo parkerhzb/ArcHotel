@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Meeting;
 import com.arcsoft.hotel.pojo.MeetingExample.Criteria;
 import com.arcsoft.hotel.pojo.MeetingExample.Criterion;
 import com.arcsoft.hotel.pojo.MeetingExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class MeetingSqlProvider {
     public String insertSelective(Meeting record) {
         BEGIN();
         INSERT_INTO("meeting");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getMeetingNumber() != null) {
             VALUES("meeting_number", "#{meetingNumber,jdbcType=VARCHAR}");

@@ -32,7 +32,8 @@ public class roomTypeServiceImpl implements roomTypeService {
     public double getPriceByName(String typeName) {
         RoomTypeExample roomTypeExample = new RoomTypeExample();
         roomTypeExample.createCriteria().andNameEqualTo(typeName);
-        double price = roomTypeMapper.selectByExample(roomTypeExample).get(0).getPrice();
+        List<RoomType> roomTypeList = roomTypeMapper.selectByExample(roomTypeExample);
+        double price = roomTypeList.get(0).getPrice();
         return price;
     }
 }

@@ -15,16 +15,17 @@ import java.util.List;
 public class checkinServiceImpl implements checkinService {
     @Autowired
     CheckInMapper checkInMapper;
-    CheckInExample checkInExample = new CheckInExample();
 
     @Override
     public List<CheckIn> getAll() {
-        List<CheckIn> list = checkInMapper.selectByExampleWithBLOBs(checkInExample);
+        CheckInExample checkInExample = new CheckInExample();
+        List<CheckIn> list = checkInMapper.selectByExample(checkInExample);
         return list;
     }
 
     @Override
     public Date getCheckinDate(Integer roomId) {
+        CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andRoomIdEqualTo(roomId).andIsCheckOutIsNull();
         Date checkin_date = checkInMapper.selectByExample(checkInExample).get(0).getCheckinDate();
         return checkin_date;
@@ -32,11 +33,12 @@ public class checkinServiceImpl implements checkinService {
 
     @Override
     public ArrayList<byte[]> faceList(int roomId) {
+        CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andRoomIdEqualTo(roomId).andIsCheckOutIsNull();
         List<CheckIn> person = checkInMapper.selectByExample(checkInExample);
         ArrayList<byte[]> faceList = new ArrayList<>();
         for (CheckIn checkIn : person) {
-            faceList.add(checkIn.getFace());
+            //faceList.add(checkIn.getFace());
         }
         return faceList;
     }
@@ -44,11 +46,12 @@ public class checkinServiceImpl implements checkinService {
 
     @Override
     public ArrayList<byte[]> faceList() {
+        CheckInExample checkInExample = new CheckInExample();
         checkInExample.createCriteria().andIsCheckOutIsNull();
         List<CheckIn> person = checkInMapper.selectByExample(checkInExample);
         ArrayList<byte[]> faceList = new ArrayList<>();
         for (CheckIn checkIn : person) {
-            faceList.add(checkIn.getFace());
+            //faceList.add(checkIn.getFace());
         }
         return faceList;
     }
@@ -57,5 +60,27 @@ public class checkinServiceImpl implements checkinService {
     public int addCheckin(CheckIn checkIn) {
         int re = checkInMapper.insertSelective(checkIn);
         return re;
+    }
+
+    @Override
+    public CheckIn getById(int id) {
+        return checkInMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int is_check_out(int id) {
+        CheckIn checkIn = new CheckIn();
+        checkIn.setId(id);
+        checkIn.setIsCheckOut(Byte.valueOf("1"));
+        int re = checkInMapper.updateByPrimaryKeySelective(checkIn);
+        return re;
+    }
+
+    @Override
+    public CheckIn getByRoomId(int room_id) {
+        CheckInExample checkInExample = new CheckInExample();
+        checkInExample.createCriteria().andRoomIdEqualTo(room_id).andIsCheckOutIsNull();
+        CheckIn checkIn = checkInMapper.selectByExample(checkInExample).get(0);
+        return checkIn;
     }
 }

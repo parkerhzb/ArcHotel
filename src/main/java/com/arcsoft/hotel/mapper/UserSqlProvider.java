@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.User;
 import com.arcsoft.hotel.pojo.UserExample.Criteria;
 import com.arcsoft.hotel.pojo.UserExample.Criterion;
 import com.arcsoft.hotel.pojo.UserExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,10 +41,6 @@ public class UserSqlProvider {
         BEGIN();
         INSERT_INTO("user");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
         if (record.getStatus() != null) {
             VALUES("status", "#{status,jdbcType=VARCHAR}");
         }
@@ -54,6 +49,22 @@ public class UserSqlProvider {
             VALUES("open_id", "#{openId,jdbcType=VARCHAR}");
         }
 
+        if (record.getSsesId() != null) {
+            VALUES("sses_id", "#{ssesId,jdbcType=VARCHAR}");
+        }
+
+        if (record.getNickname() != null) {
+            VALUES("nickname", "#{nickname,jdbcType=VARCHAR}");
+        }
+
+        if (record.getHeadimgurl() != null) {
+            VALUES("headimgurl", "#{headimgurl,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPhoneNumber() != null) {
+            VALUES("phone_number", "#{phoneNumber,jdbcType=VARCHAR}");
+        }
+        
         return SQL();
     }
 
@@ -66,6 +77,10 @@ public class UserSqlProvider {
         }
         SELECT("status");
         SELECT("open_id");
+        SELECT("sses_id");
+        SELECT("nickname");
+        SELECT("headimgurl");
+        SELECT("phone_number");
         FROM("user");
         applyWhere(example, false);
 
@@ -95,6 +110,22 @@ public class UserSqlProvider {
             SET("open_id = #{record.openId,jdbcType=VARCHAR}");
         }
 
+        if (record.getSsesId() != null) {
+            SET("sses_id = #{record.ssesId,jdbcType=VARCHAR}");
+        }
+
+        if (record.getNickname() != null) {
+            SET("nickname = #{record.nickname,jdbcType=VARCHAR}");
+        }
+
+        if (record.getHeadimgurl() != null) {
+            SET("headimgurl = #{record.headimgurl,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPhoneNumber() != null) {
+            SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(example, true);
         return SQL();
     }
@@ -106,7 +137,11 @@ public class UserSqlProvider {
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("status = #{record.status,jdbcType=VARCHAR}");
         SET("open_id = #{record.openId,jdbcType=VARCHAR}");
-
+        SET("sses_id = #{record.ssesId,jdbcType=VARCHAR}");
+        SET("nickname = #{record.nickname,jdbcType=VARCHAR}");
+        SET("headimgurl = #{record.headimgurl,jdbcType=VARCHAR}");
+        SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
+        
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -124,6 +159,22 @@ public class UserSqlProvider {
             SET("open_id = #{openId,jdbcType=VARCHAR}");
         }
 
+        if (record.getSsesId() != null) {
+            SET("sses_id = #{ssesId,jdbcType=VARCHAR}");
+        }
+
+        if (record.getNickname() != null) {
+            SET("nickname = #{nickname,jdbcType=VARCHAR}");
+        }
+
+        if (record.getHeadimgurl() != null) {
+            SET("headimgurl = #{headimgurl,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPhoneNumber() != null) {
+            SET("phone_number = #{phoneNumber,jdbcType=VARCHAR}");
+        }
+        
         WHERE("id = #{id,jdbcType=INTEGER}");
 
         return SQL();

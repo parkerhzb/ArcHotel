@@ -5,14 +5,6 @@ import java.util.Date;
 public class CheckIn {
     private Integer id;
 
-    private String name;
-
-    private Integer documentType;
-
-    private String documentNumber;
-
-    private String gender;
-
     private Date checkinDate;
 
     private Date checkoutDate;
@@ -23,11 +15,9 @@ public class CheckIn {
 
     private String relatedRoom;
 
+    private Integer personNum;
+
     private Byte isCheckOut;
-
-    private String phoneNumber;
-
-    private byte[] face;
 
     public Integer getId() {
         return id;
@@ -35,38 +25,6 @@ public class CheckIn {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(Integer documentType) {
-        this.documentType = documentType;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public Date getCheckinDate() {
@@ -109,28 +67,20 @@ public class CheckIn {
         this.relatedRoom = relatedRoom;
     }
 
+    public Integer getPersonNum() {
+        return personNum;
+    }
+
+    public void setPersonNum(Integer personNum) {
+        this.personNum = personNum;
+    }
+
     public Byte getIsCheckOut() {
         return isCheckOut;
     }
 
     public void setIsCheckOut(Byte isCheckOut) {
         this.isCheckOut = isCheckOut;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public byte[] getFace() {
-        return face;
-    }
-
-    public void setFace(byte[] face) {
-        this.face = face;
     }
 
     @Override
@@ -140,18 +90,13 @@ public class CheckIn {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", documentType=").append(documentType);
-        sb.append(", documentNumber=").append(documentNumber);
-        sb.append(", gender=").append(gender);
         sb.append(", checkinDate=").append(checkinDate);
         sb.append(", checkoutDate=").append(checkoutDate);
         sb.append(", time=").append(time);
         sb.append(", roomId=").append(roomId);
         sb.append(", relatedRoom=").append(relatedRoom);
+        sb.append(", personNum=").append(personNum);
         sb.append(", isCheckOut=").append(isCheckOut);
-        sb.append(", phoneNumber=").append(phoneNumber);
-        sb.append(", face=").append(face);
         sb.append("]");
         return sb.toString();
     }

@@ -7,13 +7,15 @@ public class Visitor {
 
     private String phoneNumber;
 
-    private Integer roomId;
+    private Integer invitationId;
 
     private String power;
 
     private Integer documentType;
 
     private String documentNumber;
+
+    private String faceurl;
 
     private byte[] face;
 
@@ -41,12 +43,12 @@ public class Visitor {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getRoomId() {
-        return roomId;
+    public Integer getInvitationId() {
+        return invitationId;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setInvitationId(Integer invitationId) {
+        this.invitationId = invitationId;
     }
 
     public String getPower() {
@@ -73,6 +75,14 @@ public class Visitor {
         this.documentNumber = documentNumber;
     }
 
+    public String getFaceurl() {
+        return faceurl;
+    }
+
+    public void setFaceurl(String faceurl) {
+        this.faceurl = faceurl;
+    }
+
     public byte[] getFace() {
         return face;
     }
@@ -90,10 +100,11 @@ public class Visitor {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", phoneNumber=").append(phoneNumber);
-        sb.append(", roomId=").append(roomId);
+        sb.append(", invitationId=").append(invitationId);
         sb.append(", power=").append(power);
         sb.append(", documentType=").append(documentType);
         sb.append(", documentNumber=").append(documentNumber);
+        sb.append(", faceurl=").append(faceurl);
         sb.append(", face=").append(face);
         sb.append("]");
         return sb.toString();

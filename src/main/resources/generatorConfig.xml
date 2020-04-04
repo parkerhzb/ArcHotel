@@ -12,6 +12,8 @@
     <!-- 暂时不清楚怎么指定相对路径，只能指定maven仓库中的jar包 -->
     <classPathEntry
             location="C:\Users\Parker\.IntelliJIdea2018.3\config\jdbc-drivers\MySQL Connector\J\5.1.47\mysql-connector-java-5.1.47.jar"/>
+    <!--location="C:\Users\Lenovo\.IntelliJIdea2019.2\config\jdbc-drivers\MySQL Connector\J 8\8.0.15\mysql-connector-java-8.0.15.jar"/>-->
+
 
     <context id="default" targetRuntime="MyBatis3">
 
@@ -24,11 +26,12 @@
         </commentGenerator>
 
         <!--jdbc的数据库连接，直接写死也可以 -->
+        <!--connectionURL="jdbc:mysql://127.0.0.1:3306/as_hotel_mis?serverTimezone=UTC"-->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1:3306/as_hotel_mis?serverTimezone=UTC"
+                connectionURL="jdbc:mysql://101.132.173.219:3306/as_hotel_mis?serverTimezone=Asia/Shanghai"
                 userId="root"
-                password="123456">
+                password="Sfx_123456">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
@@ -80,25 +83,68 @@
         </javaClientGenerator>
 
 
-        <table tableName="canteen_order"></table>
-        <table tableName="car"></table>
-        <table tableName="check_out"></table>
+        <table tableName="canteen_order">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="car">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="check_out">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
         <table tableName="check_in">
             <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="ture"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="invitation"></table>
-        <table tableName="meeting"></table>
-        <table tableName="meeting_reserve"></table>
-        <table tableName="meeting_type"></table>
-        <table tableName="park"></table>
-        <table tableName="room"></table>
-        <table tableName="room_consume"></table>
-        <table tableName="room_type"></table>
-        <table tableName="staff"></table>
-        <table tableName="user"></table>
-        <table tableName="user_reserve"></table>
-        <table tableName="visitor"></table>
+        <table tableName="invitation">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="meeting">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="meeting_reserve">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="meeting_attendees">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="meeting_date">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="meeting_type">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="park">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="room">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="room_consume">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="room_type">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="staff">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="user_reserve">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="visitor">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="inperson">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="outperson">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
 
         <!-- geelynote mybatis插件的搭建 -->

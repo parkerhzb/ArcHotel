@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.CheckOut;
 import com.arcsoft.hotel.pojo.CheckOutExample.Criteria;
 import com.arcsoft.hotel.pojo.CheckOutExample.Criterion;
 import com.arcsoft.hotel.pojo.CheckOutExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,20 +41,12 @@ public class CheckOutSqlProvider {
         BEGIN();
         INSERT_INTO("check_out");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
-        if (record.getRoomId() != null) {
-            VALUES("room_id", "#{roomId,jdbcType=INTEGER}");
+        if (record.getCheckinId() != null) {
+            VALUES("checkin_id", "#{checkinId,jdbcType=INTEGER}");
         }
 
         if (record.getPrice() != null) {
             VALUES("price", "#{price,jdbcType=DOUBLE}");
-        }
-
-        if (record.getCheckinDate() != null) {
-            VALUES("checkin_date", "#{checkinDate,jdbcType=DATE}");
         }
 
         if (record.getCheckoutDate() != null) {
@@ -63,23 +54,7 @@ public class CheckOutSqlProvider {
         }
 
         if (record.getTime() != null) {
-            VALUES("time", "#{time,jdbcType=TIMESTAMP}");
-        }
-
-        if (record.getName() != null) {
-            VALUES("name", "#{name,jdbcType=VARCHAR}");
-        }
-
-        if (record.getDocumentType() != null) {
-            VALUES("document_type", "#{documentType,jdbcType=INTEGER}");
-        }
-
-        if (record.getDocumentNumber() != null) {
-            VALUES("document_number", "#{documentNumber,jdbcType=VARCHAR}");
-        }
-
-        if (record.getCheckinId() != null) {
-            VALUES("checkin_id", "#{checkinId,jdbcType=INTEGER}");
+            VALUES("time", "#{time,jdbcType=VARCHAR}");
         }
 
         return SQL();
@@ -92,15 +67,10 @@ public class CheckOutSqlProvider {
         } else {
             SELECT("id");
         }
-        SELECT("room_id");
+        SELECT("checkin_id");
         SELECT("price");
-        SELECT("checkin_date");
         SELECT("checkout_date");
         SELECT("time");
-        SELECT("name");
-        SELECT("document_type");
-        SELECT("document_number");
-        SELECT("checkin_id");
         FROM("check_out");
         applyWhere(example, false);
 
@@ -122,16 +92,12 @@ public class CheckOutSqlProvider {
             SET("id = #{record.id,jdbcType=INTEGER}");
         }
 
-        if (record.getRoomId() != null) {
-            SET("room_id = #{record.roomId,jdbcType=INTEGER}");
+        if (record.getCheckinId() != null) {
+            SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
         }
 
         if (record.getPrice() != null) {
             SET("price = #{record.price,jdbcType=DOUBLE}");
-        }
-
-        if (record.getCheckinDate() != null) {
-            SET("checkin_date = #{record.checkinDate,jdbcType=DATE}");
         }
 
         if (record.getCheckoutDate() != null) {
@@ -139,23 +105,7 @@ public class CheckOutSqlProvider {
         }
 
         if (record.getTime() != null) {
-            SET("time = #{record.time,jdbcType=TIMESTAMP}");
-        }
-
-        if (record.getName() != null) {
-            SET("name = #{record.name,jdbcType=VARCHAR}");
-        }
-
-        if (record.getDocumentType() != null) {
-            SET("document_type = #{record.documentType,jdbcType=INTEGER}");
-        }
-
-        if (record.getDocumentNumber() != null) {
-            SET("document_number = #{record.documentNumber,jdbcType=VARCHAR}");
-        }
-
-        if (record.getCheckinId() != null) {
-            SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
+            SET("time = #{record.time,jdbcType=VARCHAR}");
         }
 
         applyWhere(example, true);
@@ -167,16 +117,11 @@ public class CheckOutSqlProvider {
         UPDATE("check_out");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
-        SET("room_id = #{record.roomId,jdbcType=INTEGER}");
-        SET("price = #{record.price,jdbcType=DOUBLE}");
-        SET("checkin_date = #{record.checkinDate,jdbcType=DATE}");
-        SET("checkout_date = #{record.checkoutDate,jdbcType=DATE}");
-        SET("time = #{record.time,jdbcType=TIMESTAMP}");
-        SET("name = #{record.name,jdbcType=VARCHAR}");
-        SET("document_type = #{record.documentType,jdbcType=INTEGER}");
-        SET("document_number = #{record.documentNumber,jdbcType=VARCHAR}");
         SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
-
+        SET("price = #{record.price,jdbcType=DOUBLE}");
+        SET("checkout_date = #{record.checkoutDate,jdbcType=DATE}");
+        SET("time = #{record.time,jdbcType=VARCHAR}");
+        
         CheckOutExample example = (CheckOutExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -186,16 +131,12 @@ public class CheckOutSqlProvider {
         BEGIN();
         UPDATE("check_out");
 
-        if (record.getRoomId() != null) {
-            SET("room_id = #{roomId,jdbcType=INTEGER}");
+        if (record.getCheckinId() != null) {
+            SET("checkin_id = #{checkinId,jdbcType=INTEGER}");
         }
 
         if (record.getPrice() != null) {
             SET("price = #{price,jdbcType=DOUBLE}");
-        }
-
-        if (record.getCheckinDate() != null) {
-            SET("checkin_date = #{checkinDate,jdbcType=DATE}");
         }
 
         if (record.getCheckoutDate() != null) {
@@ -203,23 +144,7 @@ public class CheckOutSqlProvider {
         }
 
         if (record.getTime() != null) {
-            SET("time = #{time,jdbcType=TIMESTAMP}");
-        }
-
-        if (record.getName() != null) {
-            SET("name = #{name,jdbcType=VARCHAR}");
-        }
-
-        if (record.getDocumentType() != null) {
-            SET("document_type = #{documentType,jdbcType=INTEGER}");
-        }
-
-        if (record.getDocumentNumber() != null) {
-            SET("document_number = #{documentNumber,jdbcType=VARCHAR}");
-        }
-
-        if (record.getCheckinId() != null) {
-            SET("checkin_id = #{checkinId,jdbcType=INTEGER}");
+            SET("time = #{time,jdbcType=VARCHAR}");
         }
 
         WHERE("id = #{id,jdbcType=INTEGER}");

@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Staff;
 import com.arcsoft.hotel.pojo.StaffExample.Criteria;
 import com.arcsoft.hotel.pojo.StaffExample.Criterion;
 import com.arcsoft.hotel.pojo.StaffExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class StaffSqlProvider {
     public String insertSelective(Staff record) {
         BEGIN();
         INSERT_INTO("staff");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getName() != null) {
             VALUES("name", "#{name,jdbcType=VARCHAR}");

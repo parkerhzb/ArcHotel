@@ -5,7 +5,7 @@ import java.util.Date;
 public class Park {
     private Integer id;
 
-    private Integer carId;
+    private String carNumber;
 
     private Date parkTime;
 
@@ -19,12 +19,12 @@ public class Park {
         this.id = id;
     }
 
-    public Integer getCarId() {
-        return carId;
+    public String getCarNumber() {
+        return carNumber;
     }
 
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 
     public Date getParkTime() {
@@ -50,7 +50,7 @@ public class Park {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", carId=").append(carId);
+        sb.append(", carNumber=").append(carNumber);
         sb.append(", parkTime=").append(parkTime);
         sb.append(", leaveTime=").append(leaveTime);
         sb.append("]");

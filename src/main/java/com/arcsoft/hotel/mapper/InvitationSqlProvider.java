@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Invitation;
 import com.arcsoft.hotel.pojo.InvitationExample.Criteria;
 import com.arcsoft.hotel.pojo.InvitationExample.Criterion;
 import com.arcsoft.hotel.pojo.InvitationExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,10 +41,6 @@ public class InvitationSqlProvider {
         BEGIN();
         INSERT_INTO("invitation");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
         if (record.getRoomId() != null) {
             VALUES("room_id", "#{roomId,jdbcType=INTEGER}");
         }
@@ -58,8 +53,16 @@ public class InvitationSqlProvider {
             VALUES("invite_code", "#{inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getCheckinId() != null) {
-            VALUES("checkin_id", "#{checkinId,jdbcType=INTEGER}");
+        if (record.getUserId() != null) {
+            VALUES("user_id", "#{userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            VALUES("name", "#{name,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPower() != null) {
+            VALUES("power", "#{power,jdbcType=VARCHAR}");
         }
 
         return SQL();
@@ -75,7 +78,9 @@ public class InvitationSqlProvider {
         SELECT("room_id");
         SELECT("time");
         SELECT("invite_code");
-        SELECT("checkin_id");
+        SELECT("user_id");
+        SELECT("name");
+        SELECT("power");
         FROM("invitation");
         applyWhere(example, false);
 
@@ -109,8 +114,16 @@ public class InvitationSqlProvider {
             SET("invite_code = #{record.inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getCheckinId() != null) {
-            SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
+        if (record.getUserId() != null) {
+            SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            SET("name = #{record.name,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPower() != null) {
+            SET("power = #{record.power,jdbcType=VARCHAR}");
         }
 
         applyWhere(example, true);
@@ -125,8 +138,10 @@ public class InvitationSqlProvider {
         SET("room_id = #{record.roomId,jdbcType=INTEGER}");
         SET("time = #{record.time,jdbcType=TIMESTAMP}");
         SET("invite_code = #{record.inviteCode,jdbcType=VARCHAR}");
-        SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
-
+        SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        SET("name = #{record.name,jdbcType=VARCHAR}");
+        SET("power = #{record.power,jdbcType=VARCHAR}");
+        
         InvitationExample example = (InvitationExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -148,8 +163,16 @@ public class InvitationSqlProvider {
             SET("invite_code = #{inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getCheckinId() != null) {
-            SET("checkin_id = #{checkinId,jdbcType=INTEGER}");
+        if (record.getUserId() != null) {
+            SET("user_id = #{userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            SET("name = #{name,jdbcType=VARCHAR}");
+        }
+
+        if (record.getPower() != null) {
+            SET("power = #{power,jdbcType=VARCHAR}");
         }
 
         WHERE("id = #{id,jdbcType=INTEGER}");

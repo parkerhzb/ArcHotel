@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.CanteenOrder;
 import com.arcsoft.hotel.pojo.CanteenOrderExample.Criteria;
 import com.arcsoft.hotel.pojo.CanteenOrderExample.Criterion;
 import com.arcsoft.hotel.pojo.CanteenOrderExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class CanteenOrderSqlProvider {
     public String insertSelective(CanteenOrder record) {
         BEGIN();
         INSERT_INTO("canteen_order");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getTime() != null) {
             VALUES("time", "#{time,jdbcType=TIMESTAMP}");

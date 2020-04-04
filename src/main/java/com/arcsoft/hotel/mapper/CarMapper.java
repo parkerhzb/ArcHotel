@@ -2,9 +2,7 @@ package com.arcsoft.hotel.mapper;
 
 import com.arcsoft.hotel.pojo.Car;
 import com.arcsoft.hotel.pojo.CarExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
@@ -13,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -32,20 +31,24 @@ public interface CarMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into car (id, is_checkin, ",
-            "face)",
-            "values (#{id,jdbcType=INTEGER}, #{isCheckin,jdbcType=TINYINT}, ",
-            "#{face,jdbcType=VARBINARY})"
+            "insert into car (car_number, is_checkin, ",
+            "flag, face)",
+            "values (#{carNumber,jdbcType=VARCHAR}, #{isCheckin,jdbcType=TINYINT}, ",
+            "#{flag,jdbcType=INTEGER}, #{face,jdbcType=VARBINARY})"
     })
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(Car record);
 
     @InsertProvider(type = CarSqlProvider.class, method = "insertSelective")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insertSelective(Car record);
 
     @SelectProvider(type = CarSqlProvider.class, method = "selectByExampleWithBLOBs")
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "car_number", property = "carNumber", jdbcType = JdbcType.VARCHAR),
             @Result(column = "is_checkin", property = "isCheckin", jdbcType = JdbcType.TINYINT),
+            @Result(column = "flag", property = "flag", jdbcType = JdbcType.INTEGER),
             @Result(column = "face", property = "face", jdbcType = JdbcType.VARBINARY)
     })
     List<Car> selectByExampleWithBLOBs(CarExample example);
@@ -53,19 +56,23 @@ public interface CarMapper {
     @SelectProvider(type = CarSqlProvider.class, method = "selectByExample")
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
-            @Result(column = "is_checkin", property = "isCheckin", jdbcType = JdbcType.TINYINT)
+            @Result(column = "car_number", property = "carNumber", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "is_checkin", property = "isCheckin", jdbcType = JdbcType.TINYINT),
+            @Result(column = "flag", property = "flag", jdbcType = JdbcType.INTEGER)
     })
     List<Car> selectByExample(CarExample example);
 
     @Select({
             "select",
-            "id, is_checkin, face",
+            "id, car_number, is_checkin, flag, face",
             "from car",
             "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "car_number", property = "carNumber", jdbcType = JdbcType.VARCHAR),
             @Result(column = "is_checkin", property = "isCheckin", jdbcType = JdbcType.TINYINT),
+            @Result(column = "flag", property = "flag", jdbcType = JdbcType.INTEGER),
             @Result(column = "face", property = "face", jdbcType = JdbcType.VARBINARY)
     })
     Car selectByPrimaryKey(Integer id);
@@ -84,7 +91,9 @@ public interface CarMapper {
 
     @Update({
             "update car",
-            "set is_checkin = #{isCheckin,jdbcType=TINYINT},",
+            "set car_number = #{carNumber,jdbcType=VARCHAR},",
+            "is_checkin = #{isCheckin,jdbcType=TINYINT},",
+            "flag = #{flag,jdbcType=INTEGER},",
             "face = #{face,jdbcType=VARBINARY}",
             "where id = #{id,jdbcType=INTEGER}"
     })
@@ -92,7 +101,9 @@ public interface CarMapper {
 
     @Update({
             "update car",
-            "set is_checkin = #{isCheckin,jdbcType=TINYINT}",
+            "set car_number = #{carNumber,jdbcType=VARCHAR},",
+            "is_checkin = #{isCheckin,jdbcType=TINYINT},",
+            "flag = #{flag,jdbcType=INTEGER}",
             "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Car record);

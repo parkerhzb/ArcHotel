@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Visitor;
 import com.arcsoft.hotel.pojo.VisitorExample.Criteria;
 import com.arcsoft.hotel.pojo.VisitorExample.Criterion;
 import com.arcsoft.hotel.pojo.VisitorExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,10 +41,6 @@ public class VisitorSqlProvider {
         BEGIN();
         INSERT_INTO("visitor");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
         if (record.getName() != null) {
             VALUES("name", "#{name,jdbcType=VARCHAR}");
         }
@@ -54,8 +49,8 @@ public class VisitorSqlProvider {
             VALUES("phone_number", "#{phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getRoomId() != null) {
-            VALUES("room_id", "#{roomId,jdbcType=INTEGER}");
+        if (record.getInvitationId() != null) {
+            VALUES("invitation_id", "#{invitationId,jdbcType=INTEGER}");
         }
 
         if (record.getPower() != null) {
@@ -70,6 +65,10 @@ public class VisitorSqlProvider {
             VALUES("document_number", "#{documentNumber,jdbcType=VARCHAR}");
         }
 
+        if (record.getFaceurl() != null) {
+            VALUES("faceurl", "#{faceurl,jdbcType=VARCHAR}");
+        }
+        
         if (record.getFace() != null) {
             VALUES("face", "#{face,jdbcType=VARBINARY}");
         }
@@ -86,10 +85,11 @@ public class VisitorSqlProvider {
         }
         SELECT("name");
         SELECT("phone_number");
-        SELECT("room_id");
+        SELECT("invitation_id");
         SELECT("power");
         SELECT("document_type");
         SELECT("document_number");
+        SELECT("faceurl");
         SELECT("face");
         FROM("visitor");
         applyWhere(example, false);
@@ -110,10 +110,11 @@ public class VisitorSqlProvider {
         }
         SELECT("name");
         SELECT("phone_number");
-        SELECT("room_id");
+        SELECT("invitation_id");
         SELECT("power");
         SELECT("document_type");
         SELECT("document_number");
+        SELECT("faceurl");
         FROM("visitor");
         applyWhere(example, false);
 
@@ -143,8 +144,8 @@ public class VisitorSqlProvider {
             SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getRoomId() != null) {
-            SET("room_id = #{record.roomId,jdbcType=INTEGER}");
+        if (record.getInvitationId() != null) {
+            SET("invitation_id = #{record.invitationId,jdbcType=INTEGER}");
         }
 
         if (record.getPower() != null) {
@@ -159,6 +160,10 @@ public class VisitorSqlProvider {
             SET("document_number = #{record.documentNumber,jdbcType=VARCHAR}");
         }
 
+        if (record.getFaceurl() != null) {
+            SET("faceurl = #{record.faceurl,jdbcType=VARCHAR}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{record.face,jdbcType=VARBINARY}");
         }
@@ -174,10 +179,11 @@ public class VisitorSqlProvider {
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("name = #{record.name,jdbcType=VARCHAR}");
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
-        SET("room_id = #{record.roomId,jdbcType=INTEGER}");
+        SET("invitation_id = #{record.invitationId,jdbcType=INTEGER}");
         SET("power = #{record.power,jdbcType=VARCHAR}");
         SET("document_type = #{record.documentType,jdbcType=INTEGER}");
         SET("document_number = #{record.documentNumber,jdbcType=VARCHAR}");
+        SET("faceurl = #{record.faceurl,jdbcType=VARCHAR}");
         SET("face = #{record.face,jdbcType=VARBINARY}");
 
         VisitorExample example = (VisitorExample) parameter.get("example");
@@ -192,11 +198,12 @@ public class VisitorSqlProvider {
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("name = #{record.name,jdbcType=VARCHAR}");
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
-        SET("room_id = #{record.roomId,jdbcType=INTEGER}");
+        SET("invitation_id = #{record.invitationId,jdbcType=INTEGER}");
         SET("power = #{record.power,jdbcType=VARCHAR}");
         SET("document_type = #{record.documentType,jdbcType=INTEGER}");
         SET("document_number = #{record.documentNumber,jdbcType=VARCHAR}");
-
+        SET("faceurl = #{record.faceurl,jdbcType=VARCHAR}");
+        
         VisitorExample example = (VisitorExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -214,8 +221,8 @@ public class VisitorSqlProvider {
             SET("phone_number = #{phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getRoomId() != null) {
-            SET("room_id = #{roomId,jdbcType=INTEGER}");
+        if (record.getInvitationId() != null) {
+            SET("invitation_id = #{invitationId,jdbcType=INTEGER}");
         }
 
         if (record.getPower() != null) {
@@ -230,6 +237,10 @@ public class VisitorSqlProvider {
             SET("document_number = #{documentNumber,jdbcType=VARCHAR}");
         }
 
+        if (record.getFaceurl() != null) {
+            SET("faceurl = #{faceurl,jdbcType=VARCHAR}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{face,jdbcType=VARBINARY}");
         }

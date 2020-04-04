@@ -1,5 +1,6 @@
 package com.arcsoft.hotel.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.arcsoft.hotel.mapper.VisitorMapper;
 import com.arcsoft.hotel.pojo.Visitor;
 import com.arcsoft.hotel.pojo.VisitorExample;
@@ -23,16 +24,74 @@ public class visitorServiceImpl implements visitorService {
     }
 
     @Override
-    public ArrayList<byte[]> getDoorFace(int roomId) {
+    public List<Visitor> getByIvtId(int ivtId) {
         VisitorExample visitorExample = new VisitorExample();
-        visitorExample.createCriteria().andRoomIdEqualTo(roomId);
+        visitorExample.createCriteria().andInvitationIdEqualTo(ivtId);
         List<Visitor> visitors = visitorMapper.selectByExample(visitorExample);
-        ArrayList<byte[]> face = new ArrayList<>();
-        for (Visitor visitor : visitors) {
-            //可用电梯为1，可进房间为2。传参数的时候传0或1或2或3
-            if (visitor.getPower() == "2" || visitor.getPower() == "3")
-                face.add(visitor.getFace());
+        return visitors;
+    }
+
+    @Override
+    public Visitor getById(int id) {
+        return visitorMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public JSONObject getPermsById(int id) {
+        JSONObject result = new JSONObject(true);
+        Visitor visitor = getById(id);
+        if (visitor != null) {
+            result = getPermsByPerm(visitor.getPower());
         }
-        return face;
+        return result;
+    }
+
+    @Override
+    public JSONObject getPermsByPerm(String power) {
+        JSONObject result = new JSONObject(true);
+        //String power=visitor.getPower();
+        if (power.equals("3")) {
+            result.put("lift", 1);
+            result.put("room", 1);
+        } else if (power.equals("2")) {
+            result.put("lift", 0);
+            result.put("room", 1);
+        } else if (power.equals("1")) {
+            result.put("lift", 1);
+            result.put("room", 0);
+        } else if (power.equals("0")) {
+            result.put("lift", 0);
+            result.put("room", 0);
+        }
+        return result;
+    }
+
+    @Override
+    public List<Integer> getIvtidByPhone(String phone) {
+        List<Integer> ivtIds = new ArrayList<Integer>();
+        VisitorExample visitorExample = new VisitorExample();
+        visitorExample.createCriteria().andPhoneNumberEqualTo(phone);
+        List<Visitor> visitors = visitorMapper.selectByExample(visitorExample);
+        if (visitors != null) {
+            for (Visitor visitor : visitors)
+                ivtIds.add(visitor.getInvitationId());
+        }
+        return ivtIds;
+    }
+
+    @Override
+    public Visitor getByIvtidAndPhone(int ivtId, String phone) {
+        VisitorExample visitorExample = new VisitorExample();
+        visitorExample.createCriteria().andInvitationIdEqualTo(ivtId);
+        visitorExample.createCriteria().andPhoneNumberEqualTo(phone);
+        List<Visitor> visitors = visitorMapper.selectByExample(visitorExample);
+        if (visitors != null && visitors.size() != 0)
+            return visitors.get(0);
+        return null;
+    }
+
+    @Override
+    public boolean update(Visitor visitor) {
+        return visitorMapper.updateByPrimaryKeySelective(visitor) > 0 ? true : false;
     }
 }

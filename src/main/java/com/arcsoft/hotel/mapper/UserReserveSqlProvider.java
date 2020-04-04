@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.UserReserve;
 import com.arcsoft.hotel.pojo.UserReserveExample.Criteria;
 import com.arcsoft.hotel.pojo.UserReserveExample.Criterion;
 import com.arcsoft.hotel.pojo.UserReserveExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class UserReserveSqlProvider {
     public String insertSelective(UserReserve record) {
         BEGIN();
         INSERT_INTO("user_reserve");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getName() != null) {
             VALUES("name", "#{name,jdbcType=VARCHAR}");
@@ -78,6 +73,14 @@ public class UserReserveSqlProvider {
             VALUES("user_id", "#{userId,jdbcType=INTEGER}");
         }
 
+        if (record.getStatus() != null) {
+            VALUES("status", "#{status,jdbcType=INTEGER}");
+        }
+
+        if (record.getCheckinId() != null) {
+            VALUES("checkin_id", "#{checkinId,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             VALUES("face", "#{face,jdbcType=VARBINARY}");
         }
@@ -100,6 +103,8 @@ public class UserReserveSqlProvider {
         SELECT("phone_number");
         SELECT("num");
         SELECT("user_id");
+        SELECT("status");
+        SELECT("checkin_id");
         SELECT("face");
         FROM("user_reserve");
         applyWhere(example, false);
@@ -126,6 +131,8 @@ public class UserReserveSqlProvider {
         SELECT("phone_number");
         SELECT("num");
         SELECT("user_id");
+        SELECT("status");
+        SELECT("checkin_id");
         FROM("user_reserve");
         applyWhere(example, false);
 
@@ -179,6 +186,14 @@ public class UserReserveSqlProvider {
             SET("user_id = #{record.userId,jdbcType=INTEGER}");
         }
 
+        if (record.getStatus() != null) {
+            SET("status = #{record.status,jdbcType=INTEGER}");
+        }
+
+        if (record.getCheckinId() != null) {
+            SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{record.face,jdbcType=VARBINARY}");
         }
@@ -200,6 +215,8 @@ public class UserReserveSqlProvider {
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
         SET("num = #{record.num,jdbcType=INTEGER}");
         SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        SET("status = #{record.status,jdbcType=INTEGER}");
+        SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
         SET("face = #{record.face,jdbcType=VARBINARY}");
 
         UserReserveExample example = (UserReserveExample) parameter.get("example");
@@ -220,7 +237,9 @@ public class UserReserveSqlProvider {
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
         SET("num = #{record.num,jdbcType=INTEGER}");
         SET("user_id = #{record.userId,jdbcType=INTEGER}");
-
+        SET("status = #{record.status,jdbcType=INTEGER}");
+        SET("checkin_id = #{record.checkinId,jdbcType=INTEGER}");
+        
         UserReserveExample example = (UserReserveExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -262,6 +281,14 @@ public class UserReserveSqlProvider {
             SET("user_id = #{userId,jdbcType=INTEGER}");
         }
 
+        if (record.getStatus() != null) {
+            SET("status = #{status,jdbcType=INTEGER}");
+        }
+
+        if (record.getCheckinId() != null) {
+            SET("checkin_id = #{checkinId,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{face,jdbcType=VARBINARY}");
         }

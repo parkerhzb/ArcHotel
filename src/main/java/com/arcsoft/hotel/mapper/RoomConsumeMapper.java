@@ -2,9 +2,7 @@ package com.arcsoft.hotel.mapper;
 
 import com.arcsoft.hotel.pojo.RoomConsume;
 import com.arcsoft.hotel.pojo.RoomConsumeExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
@@ -13,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -32,14 +31,16 @@ public interface RoomConsumeMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into room_consume (id, room_id, ",
-            "time, item, price)",
-            "values (#{id,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, ",
-            "#{time,jdbcType=TIMESTAMP}, #{item,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE})"
+            "insert into room_consume (room_id, time, ",
+            "item, price)",
+            "values (#{roomId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, ",
+            "#{item,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE})"
     })
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(RoomConsume record);
 
     @InsertProvider(type = RoomConsumeSqlProvider.class, method = "insertSelective")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insertSelective(RoomConsume record);
 
     @SelectProvider(type = RoomConsumeSqlProvider.class, method = "selectByExample")

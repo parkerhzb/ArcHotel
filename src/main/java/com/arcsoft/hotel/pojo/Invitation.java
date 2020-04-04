@@ -11,7 +11,11 @@ public class Invitation {
 
     private String inviteCode;
 
-    private Integer checkinId;
+    private Integer userId;
+
+    private String name;
+
+    private String power;
 
     public Integer getId() {
         return id;
@@ -45,12 +49,28 @@ public class Invitation {
         this.inviteCode = inviteCode;
     }
 
-    public Integer getCheckinId() {
-        return checkinId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setCheckinId(Integer checkinId) {
-        this.checkinId = checkinId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
     }
 
     @Override
@@ -63,7 +83,9 @@ public class Invitation {
         sb.append(", roomId=").append(roomId);
         sb.append(", time=").append(time);
         sb.append(", inviteCode=").append(inviteCode);
-        sb.append(", checkinId=").append(checkinId);
+        sb.append(", userId=").append(userId);
+        sb.append(", name=").append(name);
+        sb.append(", power=").append(power);
         sb.append("]");
         return sb.toString();
     }

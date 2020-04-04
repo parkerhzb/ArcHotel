@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.MeetingReserve;
 import com.arcsoft.hotel.pojo.MeetingReserveExample.Criteria;
 import com.arcsoft.hotel.pojo.MeetingReserveExample.Criterion;
 import com.arcsoft.hotel.pojo.MeetingReserveExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,12 +41,8 @@ public class MeetingReserveSqlProvider {
         BEGIN();
         INSERT_INTO("meeting_reserve");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
-        if (record.getMeetingId() != null) {
-            VALUES("meeting_id", "#{meetingId,jdbcType=INTEGER}");
+        if (record.getMeetingType() != null) {
+            VALUES("meeting_type", "#{meetingType,jdbcType=VARCHAR}");
         }
 
         if (record.getName() != null) {
@@ -58,16 +53,20 @@ public class MeetingReserveSqlProvider {
             VALUES("phone_number", "#{phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getTimePeriod() != null) {
-            VALUES("time_period", "#{timePeriod,jdbcType=INTEGER}");
-        }
-
         if (record.getInviteCode() != null) {
             VALUES("invite_code", "#{inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getDate() != null) {
-            VALUES("date", "#{date,jdbcType=DATE}");
+        if (record.getUserId() != null) {
+            VALUES("user_id", "#{userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getStatus() != null) {
+            VALUES("status", "#{status,jdbcType=INTEGER}");
+        }
+
+        if (record.getMeetingId() != null) {
+            VALUES("meeting_id", "#{meetingId,jdbcType=INTEGER}");
         }
 
         if (record.getFace() != null) {
@@ -84,12 +83,13 @@ public class MeetingReserveSqlProvider {
         } else {
             SELECT("id");
         }
-        SELECT("meeting_id");
+        SELECT("meeting_type");
         SELECT("name");
         SELECT("phone_number");
-        SELECT("time_period");
         SELECT("invite_code");
-        SELECT("date");
+        SELECT("user_id");
+        SELECT("status");
+        SELECT("meeting_id");
         SELECT("face");
         FROM("meeting_reserve");
         applyWhere(example, false);
@@ -108,12 +108,13 @@ public class MeetingReserveSqlProvider {
         } else {
             SELECT("id");
         }
-        SELECT("meeting_id");
+        SELECT("meeting_type");
         SELECT("name");
         SELECT("phone_number");
-        SELECT("time_period");
         SELECT("invite_code");
-        SELECT("date");
+        SELECT("user_id");
+        SELECT("status");
+        SELECT("meeting_id");
         FROM("meeting_reserve");
         applyWhere(example, false);
 
@@ -135,8 +136,8 @@ public class MeetingReserveSqlProvider {
             SET("id = #{record.id,jdbcType=INTEGER}");
         }
 
-        if (record.getMeetingId() != null) {
-            SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
+        if (record.getMeetingType() != null) {
+            SET("meeting_type = #{record.meetingType,jdbcType=VARCHAR}");
         }
 
         if (record.getName() != null) {
@@ -147,16 +148,20 @@ public class MeetingReserveSqlProvider {
             SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getTimePeriod() != null) {
-            SET("time_period = #{record.timePeriod,jdbcType=INTEGER}");
-        }
-
         if (record.getInviteCode() != null) {
             SET("invite_code = #{record.inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getDate() != null) {
-            SET("date = #{record.date,jdbcType=DATE}");
+        if (record.getUserId() != null) {
+            SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getStatus() != null) {
+            SET("status = #{record.status,jdbcType=INTEGER}");
+        }
+
+        if (record.getMeetingId() != null) {
+            SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
         }
 
         if (record.getFace() != null) {
@@ -172,12 +177,13 @@ public class MeetingReserveSqlProvider {
         UPDATE("meeting_reserve");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
-        SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
+        SET("meeting_type = #{record.meetingType,jdbcType=VARCHAR}");
         SET("name = #{record.name,jdbcType=VARCHAR}");
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
-        SET("time_period = #{record.timePeriod,jdbcType=INTEGER}");
         SET("invite_code = #{record.inviteCode,jdbcType=VARCHAR}");
-        SET("date = #{record.date,jdbcType=DATE}");
+        SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        SET("status = #{record.status,jdbcType=INTEGER}");
+        SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
         SET("face = #{record.face,jdbcType=VARBINARY}");
 
         MeetingReserveExample example = (MeetingReserveExample) parameter.get("example");
@@ -190,13 +196,14 @@ public class MeetingReserveSqlProvider {
         UPDATE("meeting_reserve");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
-        SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
+        SET("meeting_type = #{record.meetingType,jdbcType=VARCHAR}");
         SET("name = #{record.name,jdbcType=VARCHAR}");
         SET("phone_number = #{record.phoneNumber,jdbcType=VARCHAR}");
-        SET("time_period = #{record.timePeriod,jdbcType=INTEGER}");
         SET("invite_code = #{record.inviteCode,jdbcType=VARCHAR}");
-        SET("date = #{record.date,jdbcType=DATE}");
-
+        SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        SET("status = #{record.status,jdbcType=INTEGER}");
+        SET("meeting_id = #{record.meetingId,jdbcType=INTEGER}");
+        
         MeetingReserveExample example = (MeetingReserveExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -206,8 +213,8 @@ public class MeetingReserveSqlProvider {
         BEGIN();
         UPDATE("meeting_reserve");
 
-        if (record.getMeetingId() != null) {
-            SET("meeting_id = #{meetingId,jdbcType=INTEGER}");
+        if (record.getMeetingType() != null) {
+            SET("meeting_type = #{meetingType,jdbcType=VARCHAR}");
         }
 
         if (record.getName() != null) {
@@ -218,16 +225,20 @@ public class MeetingReserveSqlProvider {
             SET("phone_number = #{phoneNumber,jdbcType=VARCHAR}");
         }
 
-        if (record.getTimePeriod() != null) {
-            SET("time_period = #{timePeriod,jdbcType=INTEGER}");
-        }
-
         if (record.getInviteCode() != null) {
             SET("invite_code = #{inviteCode,jdbcType=VARCHAR}");
         }
 
-        if (record.getDate() != null) {
-            SET("date = #{date,jdbcType=DATE}");
+        if (record.getUserId() != null) {
+            SET("user_id = #{userId,jdbcType=INTEGER}");
+        }
+
+        if (record.getStatus() != null) {
+            SET("status = #{status,jdbcType=INTEGER}");
+        }
+
+        if (record.getMeetingId() != null) {
+            SET("meeting_id = #{meetingId,jdbcType=INTEGER}");
         }
 
         if (record.getFace() != null) {

@@ -2,9 +2,7 @@ package com.arcsoft.hotel.mapper;
 
 import com.arcsoft.hotel.pojo.CanteenOrder;
 import com.arcsoft.hotel.pojo.CanteenOrderExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
@@ -13,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -32,14 +31,16 @@ public interface CanteenOrderMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into canteen_order (id, time, ",
-            "price, pay_method)",
-            "values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, ",
-            "#{price,jdbcType=DOUBLE}, #{payMethod,jdbcType=VARCHAR})"
+            "insert into canteen_order (time, price, ",
+            "pay_method)",
+            "values (#{time,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}, ",
+            "#{payMethod,jdbcType=VARCHAR})"
     })
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(CanteenOrder record);
 
     @InsertProvider(type = CanteenOrderSqlProvider.class, method = "insertSelective")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insertSelective(CanteenOrder record);
 
     @SelectProvider(type = CanteenOrderSqlProvider.class, method = "selectByExample")

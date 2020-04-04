@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Car;
 import com.arcsoft.hotel.pojo.CarExample.Criteria;
 import com.arcsoft.hotel.pojo.CarExample.Criterion;
 import com.arcsoft.hotel.pojo.CarExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,14 +41,18 @@ public class CarSqlProvider {
         BEGIN();
         INSERT_INTO("car");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
+        if (record.getCarNumber() != null) {
+            VALUES("car_number", "#{carNumber,jdbcType=VARCHAR}");
         }
 
         if (record.getIsCheckin() != null) {
             VALUES("is_checkin", "#{isCheckin,jdbcType=TINYINT}");
         }
 
+        if (record.getFlag() != null) {
+            VALUES("flag", "#{flag,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             VALUES("face", "#{face,jdbcType=VARBINARY}");
         }
@@ -64,7 +67,9 @@ public class CarSqlProvider {
         } else {
             SELECT("id");
         }
+        SELECT("car_number");
         SELECT("is_checkin");
+        SELECT("flag");
         SELECT("face");
         FROM("car");
         applyWhere(example, false);
@@ -83,7 +88,9 @@ public class CarSqlProvider {
         } else {
             SELECT("id");
         }
+        SELECT("car_number");
         SELECT("is_checkin");
+        SELECT("flag");
         FROM("car");
         applyWhere(example, false);
 
@@ -105,10 +112,18 @@ public class CarSqlProvider {
             SET("id = #{record.id,jdbcType=INTEGER}");
         }
 
+        if (record.getCarNumber() != null) {
+            SET("car_number = #{record.carNumber,jdbcType=VARCHAR}");
+        }
+        
         if (record.getIsCheckin() != null) {
             SET("is_checkin = #{record.isCheckin,jdbcType=TINYINT}");
         }
 
+        if (record.getFlag() != null) {
+            SET("flag = #{record.flag,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{record.face,jdbcType=VARBINARY}");
         }
@@ -122,7 +137,9 @@ public class CarSqlProvider {
         UPDATE("car");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
+        SET("car_number = #{record.carNumber,jdbcType=VARCHAR}");
         SET("is_checkin = #{record.isCheckin,jdbcType=TINYINT}");
+        SET("flag = #{record.flag,jdbcType=INTEGER}");
         SET("face = #{record.face,jdbcType=VARBINARY}");
 
         CarExample example = (CarExample) parameter.get("example");
@@ -135,8 +152,10 @@ public class CarSqlProvider {
         UPDATE("car");
 
         SET("id = #{record.id,jdbcType=INTEGER}");
+        SET("car_number = #{record.carNumber,jdbcType=VARCHAR}");
         SET("is_checkin = #{record.isCheckin,jdbcType=TINYINT}");
-
+        SET("flag = #{record.flag,jdbcType=INTEGER}");
+        
         CarExample example = (CarExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -146,10 +165,18 @@ public class CarSqlProvider {
         BEGIN();
         UPDATE("car");
 
+        if (record.getCarNumber() != null) {
+            SET("car_number = #{carNumber,jdbcType=VARCHAR}");
+        }
+        
         if (record.getIsCheckin() != null) {
             SET("is_checkin = #{isCheckin,jdbcType=TINYINT}");
         }
 
+        if (record.getFlag() != null) {
+            SET("flag = #{flag,jdbcType=INTEGER}");
+        }
+        
         if (record.getFace() != null) {
             SET("face = #{face,jdbcType=VARBINARY}");
         }

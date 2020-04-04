@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.MeetingType;
 import com.arcsoft.hotel.pojo.MeetingTypeExample.Criteria;
 import com.arcsoft.hotel.pojo.MeetingTypeExample.Criterion;
 import com.arcsoft.hotel.pojo.MeetingTypeExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,14 +41,18 @@ public class MeetingTypeSqlProvider {
         BEGIN();
         INSERT_INTO("meeting_type");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
         if (record.getPrice() != null) {
             VALUES("price", "#{price,jdbcType=DOUBLE}");
         }
 
+        if (record.getNum() != null) {
+            VALUES("num", "#{num,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            VALUES("name", "#{name,jdbcType=VARCHAR}");
+        }
+        
         return SQL();
     }
 
@@ -61,6 +64,8 @@ public class MeetingTypeSqlProvider {
             SELECT("id");
         }
         SELECT("price");
+        SELECT("num");
+        SELECT("name");
         FROM("meeting_type");
         applyWhere(example, false);
 
@@ -86,6 +91,14 @@ public class MeetingTypeSqlProvider {
             SET("price = #{record.price,jdbcType=DOUBLE}");
         }
 
+        if (record.getNum() != null) {
+            SET("num = #{record.num,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            SET("name = #{record.name,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(example, true);
         return SQL();
     }
@@ -96,7 +109,9 @@ public class MeetingTypeSqlProvider {
 
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("price = #{record.price,jdbcType=DOUBLE}");
-
+        SET("num = #{record.num,jdbcType=INTEGER}");
+        SET("name = #{record.name,jdbcType=VARCHAR}");
+        
         MeetingTypeExample example = (MeetingTypeExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -110,6 +125,14 @@ public class MeetingTypeSqlProvider {
             SET("price = #{price,jdbcType=DOUBLE}");
         }
 
+        if (record.getNum() != null) {
+            SET("num = #{num,jdbcType=INTEGER}");
+        }
+
+        if (record.getName() != null) {
+            SET("name = #{name,jdbcType=VARCHAR}");
+        }
+        
         WHERE("id = #{id,jdbcType=INTEGER}");
 
         return SQL();

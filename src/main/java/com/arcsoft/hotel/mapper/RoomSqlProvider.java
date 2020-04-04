@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.Room;
 import com.arcsoft.hotel.pojo.RoomExample.Criteria;
 import com.arcsoft.hotel.pojo.RoomExample.Criterion;
 import com.arcsoft.hotel.pojo.RoomExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +40,6 @@ public class RoomSqlProvider {
     public String insertSelective(Room record) {
         BEGIN();
         INSERT_INTO("room");
-
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
 
         if (record.getRoomNumber() != null) {
             VALUES("room_number", "#{roomNumber,jdbcType=VARCHAR}");

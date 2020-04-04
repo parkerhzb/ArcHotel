@@ -13,14 +13,27 @@ public class wxLoginWxController {
     @Autowired
     WxLoginService wxLoginService;
     @RequestMapping("/wxlogin")
-    public JSONObject wxLoginWx(@RequestParam("wxCode") String wxCode) {
+    public JSONObject wxLoginWx(@RequestParam("data") String code) {
         JSONObject json = new JSONObject();
         try {
-            String session_id = wxLoginService.login(wxCode);
-            json.put("session_id", session_id);
+            json = wxLoginService.login(code);
         } catch (Exception e) {
             e.printStackTrace();
-            json.put("error", 1);
+            json.put("error", "数据异常");
+            return json;
+        }
+        return json;
+    }
+
+    @RequestMapping("/wgetInfobySid")
+    public JSONObject getInfobySid(@RequestParam("sess_id") String sess_id) {
+        JSONObject json = new JSONObject();
+        try {
+            json = wxLoginService.getIdentity(sess_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.put("error", "数据异常");
+            return json;
         }
         return json;
     }

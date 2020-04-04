@@ -17,7 +17,6 @@ import com.arcsoft.hotel.pojo.RoomType;
 import com.arcsoft.hotel.pojo.RoomTypeExample.Criteria;
 import com.arcsoft.hotel.pojo.RoomTypeExample.Criterion;
 import com.arcsoft.hotel.pojo.RoomTypeExample;
-
 import java.util.List;
 import java.util.Map;
 
@@ -42,10 +41,6 @@ public class RoomTypeSqlProvider {
         BEGIN();
         INSERT_INTO("room_type");
 
-        if (record.getId() != null) {
-            VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-
         if (record.getPrice() != null) {
             VALUES("price", "#{price,jdbcType=DOUBLE}");
         }
@@ -54,6 +49,10 @@ public class RoomTypeSqlProvider {
             VALUES("name", "#{name,jdbcType=VARCHAR}");
         }
 
+        if (record.getNum() != null) {
+            VALUES("num", "#{num,jdbcType=INTEGER}");
+        }
+        
         return SQL();
     }
 
@@ -66,6 +65,7 @@ public class RoomTypeSqlProvider {
         }
         SELECT("price");
         SELECT("name");
+        SELECT("num");
         FROM("room_type");
         applyWhere(example, false);
 
@@ -95,6 +95,10 @@ public class RoomTypeSqlProvider {
             SET("name = #{record.name,jdbcType=VARCHAR}");
         }
 
+        if (record.getNum() != null) {
+            SET("num = #{record.num,jdbcType=INTEGER}");
+        }
+        
         applyWhere(example, true);
         return SQL();
     }
@@ -106,7 +110,8 @@ public class RoomTypeSqlProvider {
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("price = #{record.price,jdbcType=DOUBLE}");
         SET("name = #{record.name,jdbcType=VARCHAR}");
-
+        SET("num = #{record.num,jdbcType=INTEGER}");
+        
         RoomTypeExample example = (RoomTypeExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
@@ -124,6 +129,10 @@ public class RoomTypeSqlProvider {
             SET("name = #{name,jdbcType=VARCHAR}");
         }
 
+        if (record.getNum() != null) {
+            SET("num = #{num,jdbcType=INTEGER}");
+        }
+        
         WHERE("id = #{id,jdbcType=INTEGER}");
 
         return SQL();

@@ -21,6 +21,10 @@ public class UserReserve {
 
     private Integer userId;
 
+    private Integer status;
+
+    private Integer checkinId;
+
     private byte[] face;
 
     public Integer getId() {
@@ -95,6 +99,22 @@ public class UserReserve {
         this.userId = userId;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getCheckinId() {
+        return checkinId;
+    }
+
+    public void setCheckinId(Integer checkinId) {
+        this.checkinId = checkinId;
+    }
+
     public byte[] getFace() {
         return face;
     }
@@ -118,6 +138,8 @@ public class UserReserve {
         sb.append(", phoneNumber=").append(phoneNumber);
         sb.append(", num=").append(num);
         sb.append(", userId=").append(userId);
+        sb.append(", status=").append(status);
+        sb.append(", checkinId=").append(checkinId);
         sb.append(", face=").append(face);
         sb.append("]");
         return sb.toString();

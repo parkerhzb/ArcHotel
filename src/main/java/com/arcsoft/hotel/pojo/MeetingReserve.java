@@ -1,21 +1,21 @@
 package com.arcsoft.hotel.pojo;
 
-import java.util.Date;
-
 public class MeetingReserve {
     private Integer id;
 
-    private Integer meetingId;
+    private String meetingType;
 
     private String name;
 
     private String phoneNumber;
 
-    private Integer timePeriod;
-
     private String inviteCode;
 
-    private Date date;
+    private Integer userId;
+
+    private Integer status;
+
+    private Integer meetingId;
 
     private byte[] face;
 
@@ -27,12 +27,12 @@ public class MeetingReserve {
         this.id = id;
     }
 
-    public Integer getMeetingId() {
-        return meetingId;
+    public String getMeetingType() {
+        return meetingType;
     }
 
-    public void setMeetingId(Integer meetingId) {
-        this.meetingId = meetingId;
+    public void setMeetingType(String meetingType) {
+        this.meetingType = meetingType;
     }
 
     public String getName() {
@@ -51,14 +51,6 @@ public class MeetingReserve {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getTimePeriod() {
-        return timePeriod;
-    }
-
-    public void setTimePeriod(Integer timePeriod) {
-        this.timePeriod = timePeriod;
-    }
-
     public String getInviteCode() {
         return inviteCode;
     }
@@ -67,12 +59,28 @@ public class MeetingReserve {
         this.inviteCode = inviteCode;
     }
 
-    public Date getDate() {
-        return date;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getMeetingId() {
+        return meetingId;
+    }
+
+    public void setMeetingId(Integer meetingId) {
+        this.meetingId = meetingId;
     }
 
     public byte[] getFace() {
@@ -90,12 +98,13 @@ public class MeetingReserve {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", meetingId=").append(meetingId);
+        sb.append(", meetingType=").append(meetingType);
         sb.append(", name=").append(name);
         sb.append(", phoneNumber=").append(phoneNumber);
-        sb.append(", timePeriod=").append(timePeriod);
         sb.append(", inviteCode=").append(inviteCode);
-        sb.append(", date=").append(date);
+        sb.append(", userId=").append(userId);
+        sb.append(", status=").append(status);
+        sb.append(", meetingId=").append(meetingId);
         sb.append(", face=").append(face);
         sb.append("]");
         return sb.toString();
