@@ -137,7 +137,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.0.11.Final</version>
+            <version>4.1.42.Final</version>
         </dependency>
 
         <!--&lt;!&ndash;添加注解@Table和@Column&ndash;&gt;-->
